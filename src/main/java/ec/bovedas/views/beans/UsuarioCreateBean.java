@@ -10,10 +10,10 @@ import ec.bovedas.controllers.UsuarioController;
 import ec.bovedas.models.entities.Usuario;
 
 @ManagedBean
-public class CreateUsuarioBean {
+public class UsuarioCreateBean {
 
 	private static final Logger LOGGER = Logger
-			.getLogger(CreateUsuarioBean.class);
+			.getLogger(UsuarioCreateBean.class);
 
 	private Usuario usuario;
 

@@ -1,12 +1,18 @@
 package ec.bovedas.models.daos.impl;
 
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import ec.bovedas.models.daos.UsuarioDao;
 import ec.bovedas.models.entities.Usuario;
 
-public class UsuarioDaoImpl extends GenericDaoImpl<Usuario, Integer> implements
-		UsuarioDao {
+@Stateless
+public class UsuarioDaoImpl extends GenericDaoImpl<Usuario, Integer> implements UsuarioDao {
+
+	@PersistenceContext
+	EntityManager em;
 
 	public UsuarioDaoImpl() {
 		super(Usuario.class);

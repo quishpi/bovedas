@@ -12,15 +12,14 @@ import javax.persistence.criteria.Selection;
 
 import ec.bovedas.models.daos.GenericDao;
 
-public class GenericDaoImpl<T, ID extends Serializable> implements
-		GenericDao<T, ID> {
+public class GenericDaoImpl<T, ID extends Serializable> implements GenericDao<T, ID> {
 
 	@PersistenceContext(unitName = "bovedaspu")
 	protected EntityManager em;
 
 	private final Class<T> entityClass;
 
-	public GenericDaoImpl(final Class<T> entityClass) {
+	public GenericDaoImpl(Class<T> entityClass) {
 		this.entityClass = entityClass;
 	}
 

@@ -14,6 +14,10 @@ public class UsuarioControllerEjb implements UsuarioController {
 
 	@Inject
 	private UsuarioDao usuarioDao;
+	
+	public UsuarioControllerEjb(){
+		
+	}
 
 	@Override
 	public void guardar(Usuario entity, Boolean nuevo) {
