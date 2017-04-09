@@ -6,6 +6,14 @@
 
 <h:head></h:head>
 <body>
-	<h1>LISTASSSS</h1>
+	<h1>LISTA USUARIOS</h1>
+	<h:form id="form">
+		<ui:repeat var="usuario" value="#{usuarioListBean.usuarios}">
+			<h:outputText value="#{usuario.id}" />
+			<h:outputText value="#{usuario.usuario}" />
+			<h:outputText value="#{usuario.clave}" />
+		</ui:repeat>
+
+	</h:form>
 </body>
 </html>
