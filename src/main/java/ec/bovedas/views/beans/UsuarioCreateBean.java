@@ -25,8 +25,9 @@ public class UsuarioCreateBean {
 		usuario = new Usuario();
 	}
 
-	public String process() {
+	public String guardar() {
 		LOGGER.info("Init: process of CreateUsuarioBean");
+		LOGGER.info("usuario-->"+usuario);
 		usuarioController.guardar(usuario, true);
 		LOGGER.info("Final: process CreateUsuarioBean");
 		return null;

@@ -25,9 +25,9 @@ public class UsuarioListBean {
 
 	@PostConstruct
 	public void update() {
-		LOGGER.info("Init: process of CreateUsuarioBean");
+		LOGGER.info("Init: process of ListUsuarioBean");
 		usuarios = usuarioController.listarTodo();
-		LOGGER.info("Finish: process of CreateUsuarioBean");
+		LOGGER.info("Finish: process of ListUsuarioBean");
 
 	}
 
