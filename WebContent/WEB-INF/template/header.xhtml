@@ -2,10 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui">
 
 <h:head></h:head>
-<body>
+<h:body>
 	<!-- Navigation -->
 	<nav class="navbar navbar-default navbar-static-top" role="navigation"
 		style="margin-bottom: 0">
@@ -191,10 +192,9 @@
 				<li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i>
 						Logout</a></li>
 			</ul> <!-- /.dropdown-user --></li>
-		<!-- /.dropdown -->
 	</ul>
-	<!-- /.navbar-top-links --> <ui:insert name="menuleft">
+	<ui:insert name="menuleft">
 		<ui:include src="menuleft.xhtml" />
 	</ui:insert> </nav>
-</body>
+</h:body>
 </html>

@@ -2,26 +2,29 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui">
 
 <ui:composition template="#{root}/WEB-INF/template/layout.xhtml">
+	<ui:define name="title">Nuevo Usuario</ui:define>
 	<ui:define name="content">
-		<form>
+		<b:form>
 			<div class="form-group">
-				<label for="inputdefault">Usuario</label> <input
-					class="form-control" id="usuarioTxt" type="text"
-					value="#{usuarioCreateBean.usuario.usuario}" />
+				<label>Usuario</label> 
+				<b:inputText value="#{usuarioCreateBean.usuario.usuario}"
+					placeholder="Enter text" />
 			</div>
 			<div class="form-group">
-				<label for="inputdefault">Clave</label> <input class="form-control"
-					id="claveTxt" type="text"
-					value="#{usuarioCreateBean.usuario.clave}" />
+				<label>Clave</label> 
+				<b:inputText value="#{usuarioCreateBean.usuario.clave}" class="form-control"
+					placeholder="Enter text" />
 			</div>
 			<div class="form-group">
-				<h:commandButton id="guardarBtn"
-					action="#{usuarioCreateBean.guardar}" value="Guardar" />
+				<b:commandButton value="Guardar" ajax="true"
+					actionListener="#{usuarioCreateBean.guardar()}" look="primary" />
 			</div>
-		</form>
+
+		</b:form>
 
 	</ui:define>
 </ui:composition>

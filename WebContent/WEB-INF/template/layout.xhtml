@@ -2,66 +2,67 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui">
 
 <h:head>
 	<title>Bóvedas 1.0</title>
 
 	<link href="/bovedas/resources/css/style.css" rel="stylesheet" />
-	<!-- Bootstrap Core CSS -->
 	<link href="/bovedas/resources/css/bootstrap/css/bootstrap.min.css"
 		rel="stylesheet" />
-
-	<!-- MetisMenu CSS -->
 	<link href="/bovedas/resources/css/metisMenu/metisMenu.min.css"
 		rel="stylesheet" />
-
-	<!-- Custom CSS -->
 	<link href="/bovedas/resources/css/sb-admin/css/sb-admin-2.css"
 		rel="stylesheet" />
-
-	<!-- Custom Fonts -->
 	<link
 		href="/bovedas/resources/css/font-awesome/css/font-awesome.min.css"
 		rel="stylesheet" type="text/css" />
 
-	<!-- Bootstrap Core JavaScript -->
+	<script src="/bovedas/resources/js/jquery/jquery.min.js"></script>
 	<script src="/bovedas/resources/css/bootstrap/js/bootstrap.min.js"></script>
-
-	<!-- Metis Menu Plugin JavaScript -->
 	<script src="/bovedas/resources/css/metisMenu/metisMenu.min.js"></script>
-
-	<!-- Custom Theme JavaScript -->
-	<script src="/bovedas/resources/css/sb-admin/js/sb-admin-2.js"></script>
-
+	<script src="/bovedas/resources/js/sb-admin-2.js"></script>
+	
+	<ui:insert name="css"></ui:insert>
+	<ui:insert name="javascript"></ui:insert>
 
 </h:head>
-<body>
-	<div id="wrapper">
+<h:body>
 
+	<div id="wrapper">
 		<ui:insert name="header">
 			<ui:include src="header.xhtml" />
 		</ui:insert>
-
 		<div id="page-wrapper">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1 class="page-header">Escritorio</h1>
+					<br />
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-lg-8">
+				<div class="col-lg-12">
 					<div class="panel panel-default">
-						<ui:insert name="content">
-							<ui:include src="content.xhtml" />
-						</ui:insert>
+						<div class="panel-heading">
+						<ui:insert name="title">
+								<ui:include src="title.xhtml" />
+							</ui:insert>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-lg-12">
+									<ui:insert name="content">
+										<ui:include src="content.xhtml" />
+									</ui:insert>
+
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
-			<!-- /.row -->
 		</div>
-		<!-- /#page-wrapper -->
 
 	</div>
-</body>
+</h:body>
 </html>
