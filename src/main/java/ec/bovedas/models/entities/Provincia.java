@@ -20,7 +20,6 @@ public class Provincia {
 		this.id = null;
 		this.nombre = nombre;
 	}
-
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "id", unique = true, nullable = false)

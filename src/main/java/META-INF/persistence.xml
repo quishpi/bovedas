@@ -5,6 +5,7 @@
 		<jta-data-source>java:jboss/dataSources/BovedasDS</jta-data-source>
 
 		<class>ec.bovedas.models.entities.Usuario</class>
+		<class>ec.bovedas.models.entities.Provincia</class>
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
 			<property name="hibernate.hbm2ddl.auto" value="update" />
