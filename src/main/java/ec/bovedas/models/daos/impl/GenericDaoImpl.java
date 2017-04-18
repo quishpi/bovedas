@@ -54,6 +54,7 @@ public class GenericDaoImpl<T, ID extends Serializable> implements GenericDao<T,
 
 	@Override
 	public List<T> findAll() {
+		em.flush();
 		CriteriaQuery<T> cq = em.getCriteriaBuilder().createQuery(entityClass);
 		CriteriaQuery<T> all = cq.select(cq.from(entityClass));
 		return em.createQuery(all).getResultList();
@@ -62,6 +63,7 @@ public class GenericDaoImpl<T, ID extends Serializable> implements GenericDao<T,
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<T> findRange(int[] range) {
+		em.flush();
 		CriteriaQuery<T> cq = em.getCriteriaBuilder().createQuery(entityClass);
 		cq.select(cq.from(entityClass));
 		Query q = em.createQuery(cq);
@@ -73,6 +75,7 @@ public class GenericDaoImpl<T, ID extends Serializable> implements GenericDao<T,
 	@SuppressWarnings("unchecked")
 	@Override
 	public Integer count() {
+		em.flush();
 		CriteriaQuery<T> cq = em.getCriteriaBuilder().createQuery(entityClass);
 		Root<T> rt = cq.from(entityClass);
 		cq.select((Selection<? extends T>) em.getCriteriaBuilder().count(rt));
