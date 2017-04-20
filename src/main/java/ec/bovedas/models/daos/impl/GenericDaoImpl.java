@@ -28,23 +28,66 @@ public class GenericDaoImpl<T, ID extends Serializable> implements GenericDao<T,
 	}
 
 	@Override
-	public void create(T entity) {
-		em.persist(entity);
+	public String create(T entity) {
+		String error = "Error!";
+		try {
+			em.persist(entity);
+			error = null;
+		} catch (javax.persistence.PersistenceException err) {
+			final Throwable cause = err.getCause();
+			System.out.println("--> " + cause);
+			// err.printStackTrace();
+			if (cause instanceof org.hibernate.exception.ConstraintViolationException) {
+				error = "Datos duplicados, ya existen en la base de datos";
+			} else if (cause instanceof org.hibernate.exception.DataException) {
+				error = "Campos incorrectos, posible causa: sobrepasa número de carateres permitidos";
+			} else {
+				error = "No se pudo guardar. Clave:" + err.getCause();
+			}
+		}
+		return error;
 	}
 
 	@Override
-	public void update(T entity) {
-		em.merge(entity);
+	public String update(T entity) {
+		String error = "Error!";
+		try {
+			em.merge(entity);
+			error = null;
+		} catch (javax.persistence.PersistenceException err) {
+			final Throwable cause = err.getCause();
+			System.out.println("--> " + cause);
+			// err.printStackTrace();
+			if (cause instanceof org.hibernate.exception.ConstraintViolationException) {
+				error = "Datos duplicados, ya existen en la base de datos";
+			} else if (cause instanceof org.hibernate.exception.DataException) {
+				error = "Campos incorrectos, posible causa: sobrepasa número de carateres permitidos";
+			} else {
+				error = "No se pudo actualizar. Clave:" + err.getCause();
+			}
+		}
+
+		return error;
 	}
 
 	@Override
-	public void delete(T entity) {
-		em.remove(entity);
-	}
+	public String delete(T entity) {
+		String error = "Error!";
+		try {
+			em.remove(entity);
+			error = null;
+		} catch (javax.persistence.PersistenceException err) {
+			final Throwable cause = err.getCause();
+			System.out.println("--> " + cause);
+			// err.printStackTrace();
+			if (cause instanceof org.hibernate.exception.ConstraintViolationException) {
+				error = "No se pudo eliminar, Datos estan siendo usados";
+			} else {
+				error = "No se pudo guardar. Clave:" + err.getCause();
+			}
+		}
 
-	@Override
-	public void flush() {
-		em.flush();
+		return error;
 	}
 
 	@Override

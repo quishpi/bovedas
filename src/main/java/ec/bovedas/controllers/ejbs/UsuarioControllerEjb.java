@@ -20,8 +20,8 @@ public class UsuarioControllerEjb implements UsuarioController {
 	}
 
 	@Override
-	public void guardar(Usuario entity, Boolean nuevo) {
-		if (nuevo) {
+	public void guardar(Usuario entity, Boolean esNuevo) {
+		if (esNuevo) {
 			usuarioDao.create(entity);
 		} else {
 			usuarioDao.update(entity);

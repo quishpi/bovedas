@@ -6,9 +6,9 @@ import ec.bovedas.models.entities.Provincia;
 
 public interface ProvinciaController {
 
-	public void guardar(Provincia entity, Boolean nuevo);
+	public String guardar(Provincia entity, Boolean esNuevo);
 
-	public void eliminar(Provincia entity);
+	public String eliminar(Provincia entity);
 
 	public Provincia buscar(Integer id);
 

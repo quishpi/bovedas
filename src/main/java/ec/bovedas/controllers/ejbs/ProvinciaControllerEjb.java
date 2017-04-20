@@ -20,17 +20,21 @@ public class ProvinciaControllerEjb implements ProvinciaController {
 	}
 
 	@Override
-	public void guardar(Provincia entity, Boolean nuevo) {
-		if (nuevo) {
-			provinciaDao.create(entity);
+	public String guardar(Provincia entity, Boolean esNuevo) {
+		String msg = null;
+		if (esNuevo) {
+			msg = provinciaDao.create(entity);
 		} else {
-			provinciaDao.update(entity);
+			msg = provinciaDao.update(entity);
 		}
+		return msg;
 	}
 
 	@Override
-	public void eliminar(Provincia entity) {
-		provinciaDao.delete(entity);
+	public String eliminar(Provincia entity) {
+		String msg = null;
+		msg = provinciaDao.delete(entity);
+		return msg;
 	}
 
 	@Override

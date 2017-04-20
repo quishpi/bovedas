@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui">
+<ui:define name="css">
+
+</ui:define>
+
+<ui:define name="javascript">
+
+</ui:define>
+<ui:composition template="#{root}/WEB-INF/template/layout.xhtml">
+	<ui:define name="title">Provincia</ui:define>
+	<ui:define name="content">
+		<b:form class="form-horizontal">
+			<b:growl id="growl" show-detail="true" global-only="false"
+				show-summary="false" allow-dismiss="true"
+				animation-enter="animated bounceInDown" life="5000" />
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Nombre*</label>
+				<div class="col-sm-4">
+					<b:inputText class="form-control" id="txtNombre" type="text"
+						value="#{provinciaCreateBean.provincia.nombre}" required="true"
+						required-message="Nombre es obligatorio" />
+				</div>
+			</div>
+			<div class="col-sm-2"></div>
+			<div class="btn-group">
+				<b:commandButton class="btn btn-primary"
+					action="#{provinciaCreateBean.guardar()}" ajax="true"
+					onclick="waitingDialog.show('Guardando...');">
+					<span class="fa fa-floppy-o"></span> Guardar
+					</b:commandButton>
+				<b:commandButton class="btn btn-primary"
+					action="#{provinciaCreateBean.actualizar()}" ajax="true"
+					rendered="#{!provinciaCreateBean.existeParametros()}">
+					<span class="fa fa-floppy-o"></span> Actualizar</b:commandButton>
+				<b:commandButton class="btn btn-primary"
+					action="#{provinciaCreateBean.eliminar()}" ajax="true"
+					rendered="#{!provinciaCreateBean.existeParametros()}">
+					<span class="fa fa-trash-o"></span> Eliminar</b:commandButton>
+				<a href="index.xhtml" class="btn btn-primary"> <span
+					class="fa fa-sign-out"></span> Regresar
+				</a>
+			</div>
+
+			<h:outputText value="#{mensajeBean.mensaje}" escape="false" />
+
+		</b:form>
+	</ui:define>
+</ui:composition>
+</html>
