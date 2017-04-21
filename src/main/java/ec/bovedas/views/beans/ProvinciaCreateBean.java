@@ -28,7 +28,6 @@ public class ProvinciaCreateBean {
 	@PostConstruct
 	public void init() {
 		provincia = new Provincia();
-		System.out.println("-- Entras construc");
 	}
 
 	public void guardar() {
@@ -40,27 +39,6 @@ public class ProvinciaCreateBean {
 		} else {
 			mensajeBean.addMsg(MensajesTipo.DANGER, "Error:", result);
 		}
-
-		/*
-		 * ExternalContext ec =
-		 * FacesContext.getCurrentInstance().getExternalContext(); try { //
-		 * ec.redirect(ec.getRequestContextPath() + "/newpage.xhtml");
-		 * ec.redirect("index.xhtml"); } catch (IOException e) {
-		 * e.printStackTrace(); }
-		 */
-		// return "index.xhtml?faces-redirect=true";
-	}
-
-	public boolean existeParametros() {
-		return true;
-	}
-
-	public Provincia getProvincia() {
-		return provincia;
-	}
-
-	public void setProvincia(Provincia provincia) {
-		this.provincia = provincia;
 	}
 
 	public void actualizar() {
@@ -69,6 +47,18 @@ public class ProvinciaCreateBean {
 
 	public void eliminar() {
 
+	}
+
+	public boolean existeParametros() {
+		return false;
+	}
+
+	public Provincia getProvincia() {
+		return provincia;
+	}
+
+	public void setProvincia(Provincia provincia) {
+		this.provincia = provincia;
 	}
 
 	public MensajeBean getMensajeBean() {
