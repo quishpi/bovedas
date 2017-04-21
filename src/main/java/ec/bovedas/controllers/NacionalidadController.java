@@ -6,9 +6,9 @@ import ec.bovedas.models.entities.Nacionalidad;
 
 public interface NacionalidadController {
 
-	public void guardar(Nacionalidad entity, Boolean nuevo);
+	public String guardar(Nacionalidad entity, Boolean nuevo);
 
-	public void eliminar(Nacionalidad entity);
+	public String eliminar(Nacionalidad entity);
 
 	public Nacionalidad buscar(Integer id);
 

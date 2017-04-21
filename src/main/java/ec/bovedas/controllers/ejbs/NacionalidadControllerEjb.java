@@ -19,19 +19,19 @@ public class NacionalidadControllerEjb implements NacionalidadController {
 	}
 
 	@Override
-	public void guardar(Nacionalidad entity, Boolean nuevo) {
-		// TODO Auto-generated method stub
+	public String guardar(Nacionalidad entity, Boolean nuevo) {
+		String msg = null;
 		if (nuevo) {
-			nacionalidadDao.create(entity);
+			msg = nacionalidadDao.create(entity);
 		} else {
-			nacionalidadDao.update(entity);
+			msg = nacionalidadDao.update(entity);
 		}
+		return msg;
 	}
 
 	@Override
-	public void eliminar(Nacionalidad entity) {
-		// TODO Auto-generated method stub
-		nacionalidadDao.delete(entity);
+	public String eliminar(Nacionalidad entity) {
+		return nacionalidadDao.delete(entity);
 	}
 
 	@Override
