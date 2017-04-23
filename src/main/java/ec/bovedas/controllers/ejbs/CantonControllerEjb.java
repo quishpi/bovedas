@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import ec.bovedas.controllers.CantonController;
 import ec.bovedas.models.daos.CantonDao;
 import ec.bovedas.models.entities.Canton;
+import ec.bovedas.models.entities.Provincia;
 
 @Stateless
 public class CantonControllerEjb implements CantonController {
@@ -32,9 +33,7 @@ public class CantonControllerEjb implements CantonController {
 
 	@Override
 	public String eliminar(Canton entity) {
-		String msg = null;
-		msg = cantonDao.delete(entity);
-		return msg;
+		return cantonDao.delete(entity);
 	}
 
 	@Override
@@ -53,9 +52,8 @@ public class CantonControllerEjb implements CantonController {
 	}
 
 	@Override
-	public Canton buscar(String usuario, String clave) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Canton> listar(Provincia provincia) {
+		return cantonDao.find(provincia);
 	}
 
 }

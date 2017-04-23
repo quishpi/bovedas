@@ -6,13 +6,11 @@ import ec.bovedas.models.entities.Parroquia;
 
 public interface ParroquiaController {
 
-	public void guardar(Parroquia entity, Boolean nuevo);
+	public String guardar(Parroquia entity, Boolean esNuevo);
 
-	public void eliminar(Parroquia entity);
+	public String eliminar(Parroquia entity);
 
 	public Parroquia buscar(Integer id);
-
-	public Parroquia buscar(String usuario, String clave);
 
 	public List<Parroquia> listarTodo();
 

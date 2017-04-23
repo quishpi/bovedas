@@ -32,9 +32,7 @@ public class ProvinciaControllerEjb implements ProvinciaController {
 
 	@Override
 	public String eliminar(Provincia entity) {
-		String msg = null;
-		msg = provinciaDao.delete(entity);
-		return msg;
+		return provinciaDao.delete(entity);
 	}
 
 	@Override
@@ -50,12 +48,6 @@ public class ProvinciaControllerEjb implements ProvinciaController {
 	@Override
 	public Integer contar() {
 		return provinciaDao.count();
-	}
-
-	@Override
-	public Provincia buscar(String provincia, String clave) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

@@ -12,8 +12,6 @@ public interface ProvinciaController {
 
 	public Provincia buscar(Integer id);
 
-	public Provincia buscar(String usuario, String clave);
-
 	public List<Provincia> listarTodo();
 
 	public Integer contar();

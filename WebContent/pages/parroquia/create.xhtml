@@ -6,7 +6,7 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="#{root}/WEB-INF/template/layout.xhtml">
-	<ui:define name="title">Cantón</ui:define>
+	<ui:define name="title">Parroquia</ui:define>
 	<ui:define name="content">
 		<h:form id="frm" class="form-horizontal">
 			<p:growl id="growl" sticky="false" life="5000" showDetail="false"
@@ -17,13 +17,29 @@
 				<div class="col-sm-3">
 					<p:selectOneMenu id="provincia" required="true"
 						requiredMessage="Provincia es obligatorio "
-						value="#{cantonCreateBean.canton.provincia}"
+						value="#{parroquiaCreateBean.provincia}"
+						converter="omnifaces.SelectItemsConverter" style="width:100%;">
+						<p:ajax listener="#{parroquiaCreateBean.onProvinciaChange}"
+							update="canton" />
+						<f:selectItem itemLabel="Selecciones" itemValue=""
+							noSelectionOption="true" />
+						<f:selectItems value="#{parroquiaCreateBean.provincias}"
+							var="provincia" itemLabel="#{provincia.nombre}"
+							itemValue="#{provincia}" />
+					</p:selectOneMenu>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-1 control-label">Cantón*</label>
+				<div class="col-sm-3">
+					<p:selectOneMenu id="canton" required="true"
+						requiredMessage="Provincia es obligatorio "
+						value="#{parroquiaCreateBean.parroquia.canton}"
 						converter="omnifaces.SelectItemsConverter" style="width:100%;">
 						<f:selectItem itemLabel="Selecciones" itemValue=""
 							noSelectionOption="true" />
-						<f:selectItems value="#{provinciaIndexBean.provincias}"
-							var="provincia" itemLabel="#{provincia.nombre}"
-							itemValue="#{provincia}" />
+						<f:selectItems value="#{parroquiaCreateBean.cantones}"
+							var="canton" itemLabel="#{canton.nombre}" itemValue="#{canton}" />
 					</p:selectOneMenu>
 				</div>
 			</div>
@@ -31,14 +47,14 @@
 				<label class="col-sm-1 control-label">Nombre*</label>
 				<div class="col-sm-3">
 					<p:inputText class="form-control"
-						value="#{cantonCreateBean.canton.nombre}" required="true"
+						value="#{parroquiaCreateBean.parroquia.nombre}" required="true"
 						requiredMessage="Nombre es obligatorio " />
 				</div>
 			</div>
 			<div class="col-sm-1"></div>
 			<div class="btn-group">
 				<p:commandButton value="Guardar"
-					actionListener="#{cantonCreateBean.guardar()}" icon="fa fa-save"
+					actionListener="#{parroquiaCreateBean.guardar()}" icon="fa fa-save"
 					class="btn" ajax="true" update="frm" />
 				<p:commandButton value="Regresar"
 					onclick="location.href = 'index.xhtml';" icon="fa fa-sign-out"

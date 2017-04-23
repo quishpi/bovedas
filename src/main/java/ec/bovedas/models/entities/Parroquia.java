@@ -31,7 +31,7 @@ public class Parroquia {
 	@Column(name = "id", unique = true, nullable = false)
 	private Integer id;
 
-	@Column(name = "nombre", unique = true, nullable = false, length = 50)
+	@Column(name = "nombre", nullable = false, length = 50)
 	private String nombre;
 	
 	@ManyToOne(cascade = CascadeType.REFRESH, optional = false)

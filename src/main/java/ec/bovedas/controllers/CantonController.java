@@ -2,7 +2,7 @@ package ec.bovedas.controllers;
 
 import java.util.List;
 import ec.bovedas.models.entities.Canton;
-
+import ec.bovedas.models.entities.Provincia;
 
 public interface CantonController {
 
@@ -12,9 +12,9 @@ public interface CantonController {
 
 	public Canton buscar(Integer id);
 
-	public Canton buscar(String usuario, String clave);
-
 	public List<Canton> listarTodo();
+
+	public List<Canton> listar(Provincia provincia);
 
 	public Integer contar();
 
