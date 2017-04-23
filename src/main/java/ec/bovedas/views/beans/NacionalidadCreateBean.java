@@ -2,30 +2,21 @@ package ec.bovedas.views.beans;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
-import org.apache.log4j.Logger;
-
 import ec.bovedas.controllers.NacionalidadController;
 import ec.bovedas.models.entities.Nacionalidad;
-import ec.bovedas.utils.MensajesTipo;
+import ec.bovedas.utils.Mensajes;
 
 @ManagedBean
 @ViewScoped
 public class NacionalidadCreateBean {
 
-	private static final Logger LOGGER = Logger.getLogger(NacionalidadCreateBean.class);
-
 	private Nacionalidad nacionalidad;
-
-	
 
 	@EJB
 	private NacionalidadController nacionalidadController;
-
-	@ManagedProperty(value = "#{mensajeBean}")
-	private MensajeBean mensajeBean;
 
 	@PostConstruct
 	public void init() {
@@ -33,13 +24,12 @@ public class NacionalidadCreateBean {
 	}
 
 	public void guardar() {
-		LOGGER.info("Init: Guardar");
 		String result = nacionalidadController.guardar(nacionalidad, true);
 		if (result == null) {
-			mensajeBean.addMsg(MensajesTipo.SUCCESS, "Nacionalidad:", "Guardado correctamente");
 			nacionalidad = new Nacionalidad();
+			Mensajes.addMsg(FacesMessage.SEVERITY_INFO, "Guardado correctamente");
 		} else {
-			mensajeBean.addMsg(MensajesTipo.DANGER, "Error:", result);
+			Mensajes.addMsg(FacesMessage.SEVERITY_ERROR, " Error: " + result);
 		}
 	}
 
@@ -55,13 +45,6 @@ public class NacionalidadCreateBean {
 		return false;
 	}
 
-	public MensajeBean getMensajeBean() {
-		return mensajeBean;
-	}
-
-	public void setMensajeBean(MensajeBean mensajeBean) {
-		this.mensajeBean = mensajeBean;
-	}
 	public Nacionalidad getNacionalidad() {
 		return nacionalidad;
 	}

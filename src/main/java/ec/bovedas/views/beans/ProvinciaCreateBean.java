@@ -31,7 +31,7 @@ public class ProvinciaCreateBean {
 		String result = provinciaController.guardar(provincia, true);
 		if (result == null) {
 			provincia = new Provincia();
-			Mensajes.addMsg(FacesMessage.SEVERITY_INFO, " Guardado correctamente ok.");
+			Mensajes.addMsg(FacesMessage.SEVERITY_INFO, " Guardado correctamente");
 		} else {
 			Mensajes.addMsg(FacesMessage.SEVERITY_ERROR, " Error: " + result);
 		}
