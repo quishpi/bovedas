@@ -6,28 +6,43 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="#{root}/WEB-INF/template/layout.xhtml">
-	<ui:define name="title">Nacionalidad</ui:define>
+	<ui:define name="title">Cantón</ui:define>
 	<ui:define name="content">
 		<h:form id="frm" class="form-horizontal">
 			<p:growl id="growl" sticky="false" life="5000" showDetail="false"
 				autoUpdate="true" />
 
 			<div class="form-group">
+				<label class="col-sm-1 control-label">Provincia*</label>
+				<div class="col-sm-3">
+					<p:selectOneMenu id="provincia" required="true"
+						requiredMessage="Provincia es obligatorio "
+						value="#{cantonCreateBean.canton.provincia}"
+						converter="omnifaces.SelectItemsConverter">
+						<f:selectItem itemLabel="Selecciones" itemValue=""
+							noSelectionOption="true" />
+						<f:selectItems value="#{provinciaIndexBean.provincias}"
+							var="provincia" itemLabel="#{provincia.nombre}"
+							itemValue="#{provincia}" />
+					</p:selectOneMenu>
+				</div>
+			</div>
+			<div class="form-group">
 				<label class="col-sm-1 control-label">Nombre*</label>
 				<div class="col-sm-3">
 					<p:inputText class="form-control"
-						value="#{nacionalidadCreateBean.nacionalidad.nombre}"
-						required="true" requiredMessage="Nombre es obligatorio " />
+						value="#{cantonCreateBean.canton.nombre}" required="true"
+						requiredMessage="Nombre es obligatorio " />
 				</div>
 			</div>
 			<div class="col-sm-1"></div>
 			<div class="btn-group">
 				<p:commandButton value="Guardar"
-					actionListener="#{nacionalidadCreateBean.guardar()}"
-					icon="fa fa-save" class="btn" ajax="true" update="frm" />
+					actionListener="#{cantonCreateBean.guardar()}" icon="fa fa-save"
+					class="btn" ajax="true" update="frm" />
 				<p:commandButton value="Regresar"
 					onclick="location.href = 'index.xhtml';" icon="fa fa-sign-out"
-					class="btn" immediate="true" />
+					class="btn" immediate="true"/>
 			</div>
 			<p:messages id="messages" showDetail="false" autoUpdate="true"
 				closable="true" />

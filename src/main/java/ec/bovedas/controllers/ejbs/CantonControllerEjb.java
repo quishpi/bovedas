@@ -2,13 +2,14 @@ package ec.bovedas.controllers.ejbs;
 
 import java.util.List;
 
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import ec.bovedas.controllers.CantonController;
 import ec.bovedas.models.daos.CantonDao;
 import ec.bovedas.models.entities.Canton;
 
-
+@Stateless
 public class CantonControllerEjb implements CantonController {
 
 	@Inject
@@ -19,17 +20,21 @@ public class CantonControllerEjb implements CantonController {
 	}
 
 	@Override
-	public void guardar(Canton entity, Boolean nuevo) {
-		if (nuevo) {
-			cantonDao.create(entity);
+	public String guardar(Canton entity, Boolean esNuevo) {
+		String msg = null;
+		if (esNuevo) {
+			msg = cantonDao.create(entity);
 		} else {
-			cantonDao.update(entity);
+			msg = cantonDao.update(entity);
 		}
+		return msg;
 	}
 
 	@Override
-	public void eliminar(Canton entity) {
-		cantonDao.delete(entity);
+	public String eliminar(Canton entity) {
+		String msg = null;
+		msg = cantonDao.delete(entity);
+		return msg;
 	}
 
 	@Override

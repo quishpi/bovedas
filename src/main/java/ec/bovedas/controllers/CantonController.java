@@ -6,9 +6,9 @@ import ec.bovedas.models.entities.Canton;
 
 public interface CantonController {
 
-	public void guardar(Canton entity, Boolean nuevo);
+	public String guardar(Canton entity, Boolean esNuevo);
 
-	public void eliminar(Canton entity);
+	public String eliminar(Canton entity);
 
 	public Canton buscar(Integer id);
 
