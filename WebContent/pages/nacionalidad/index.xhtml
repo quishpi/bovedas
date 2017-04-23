@@ -3,59 +3,53 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:b="http://bootsfaces.net/ui">
+	xmlns:b="http://bootsfaces.net/ui" xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="#{root}/WEB-INF/template/layout.xhtml">
 
-	<ui:define name="title">Lista de Nacionalidades</ui:define>
+	<ui:define name="title">Lista de Provincias</ui:define>
 	<ui:define name="content">
-		<h:outputScript name="js/tables/jquery.dataTables.min.js"
-			target="head" />
-		<h:outputScript name="js/tables/dataTables.bootstrap.min.js"
-			target="head" />
-		<h:outputStylesheet name="css/tables/dataTables.bootstrap.min.css" />
-
 		<b:form>
 			<div class="panel">
 				<div class="panel-body">
 					<div class="btn-group">
-						<a href="create.xhtml" class="btn btn-primary"> <span
-							class="glyphicon glyphicon-plus"></span>Nuevo
-						</a>
+						<p:commandButton onclick="location.href = 'create.xhtml';"
+							icon="fa fa-plus" class="btn" value="Nuevo" />
 					</div>
 				</div>
 			</div>
-			<table id="example" class="table table-striped table-bordered"
-				cellspacing="0" width="100%">
-				<thead>
-					<tr style="background-color: #ccc;">
-						<th>Id</th>
-						<th>Nombre</th>
-						<th data-sortable="false" style="width: 100px;" align="center"></th>
-					</tr>
-				</thead>
-				<tbody>
-					<ui:repeat value="#{nacionalidadIndexBean.nacionalidades}" var="nacionalidad">
-						<tr>
-							<td>#{nacionalidad.id}</td>
-							<td>#{nacionalidad.nombre}</td>
-							<td><div class="btn-group">
-									<a href="#" class="btn btn-primary" title="Editar"><span
-										class="glyphicon glyphicon-edit"></span></a><a href="#"
-										class="btn btn-primary" title="Eliminar"><span
-										class="glyphicon glyphicon-trash"></span></a>
-								</div></td>
-						</tr>
-					</ui:repeat>
-				</tbody>
-			</table>
+			<p:dataTable id="tblLista" var="nacionalidad"
+				value="#{nacionalidadIndexBean.nacionalidades}"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+				paginator="true" rows="10" style="margin-bottom:20px">
+				<p:column style="width:50px;">
+					<f:facet name="header">
+						<h:outputText value="Id" />
+					</f:facet>
+					<h:outputText value="#{nacionalidad.id}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Nombre" />
+					</f:facet>
+					<h:outputText value="#{nacionalidad.nombre}" />
+				</p:column>
+				<p:column style="width:100px;">
+					<f:facet name="header">
+					</f:facet>
+					<div class="btn-group">
+						<p:commandButton onclick="location.href = 'index.xhtml';"
+							icon="fa fa-edit" class="btn" />
+						<p:commandButton onclick="location.href = 'index.xhtml';"
+							icon="fa fa-trash" class="btn" />
+					</div>
+				</p:column>
+			</p:dataTable>
 		</b:form>
 
 		<script>
 	//<![CDATA[
-	$(document).ready(function() {
-   		$('#example').DataTable();
-	});
+	
 	//]]>
 	</script>
 
