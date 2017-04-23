@@ -2,45 +2,48 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:b="http://bootsfaces.net/ui">
+	xmlns:h="http://java.sun.com/jsf/html">
 
 <h:head>
-	<title>Bóvedas 1.0</title>
-	<h:outputScript name="js/jquery_3.2.1/jquery.min.js" target="head" />
-	<h:outputScript name="css/bootstrap_3.3.7/js/bootstrap.min.js"
-		target="head" />
-	<h:outputScript name="css/metisMenu/metisMenu.min.js" target="head" />
-	<h:outputScript name="js/sb-admin-2.js" target="head" />
-	<h:outputScript name="js/loading.js" target="head" />
-	<h:outputScript name="js/js.js" target="head" />
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>BOVEDAS 1.0.0</title>
 
-	<ui:insert name="javascript"></ui:insert>
-	<link
-		href="/bovedas/resources/css/bootstrap_3.3.7/css/bootstrap.min.css"
-		rel="stylesheet" type="text/css" />
-	<link href="/bovedas/resources/css/metisMenu/metisMenu.min.css"
-		rel="stylesheet" type="text/css" />
-	<h:outputStylesheet name="css/sb-admin/css/sb-admin-2.css"
-		position="last" />
-	<link
-		href="/bovedas/resources/css/font-awesome/css/font-awesome.min.css"
-		rel="stylesheet" type="text/css" />
-	<h:outputStylesheet name="css/style.css" position="last" />
+	<!--  <script src="/bovedas/resources/js/jquery_3.2.1/jquery.min.js"></script> -->
+	<script
+		src="/bovedas/resources/css/bootstrap_3.3.7/js/bootstrap.min.js"></script>
+	<script
+		src="/bovedas/resources/css/adminlte_2.3.12/js/fastclick/fastclick.js"></script>
+	<script src="/bovedas/resources/css/adminlte_2.3.12/js/app.min.js"></script>
 
 
+	<meta
+		content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+		name="viewport" />
+	<link rel="stylesheet"
+		href="/bovedas/resources/css/bootstrap_3.3.7/css/bootstrap.min.css" />
+	<link rel="stylesheet"
+		href="/bovedas/resources/css/font-awesome/css/font-awesome.min.css" />
+	<link rel="stylesheet"
+		href="/bovedas/resources/css/adminlte_2.3.12/css/AdminLTE.min.css" />
 
+	<link rel="stylesheet"
+		href="/bovedas/resources/css/adminlte_2.3.12/css/skins/_all-skins.min.css" />
 
-	<ui:insert name="css"></ui:insert>
-
+	<link rel="stylesheet" href="/bovedas/resources/css/style.css" />
 </h:head>
-<h:body>
-
-	<div id="wrapper">
-		<ui:insert name="header">
+<h:body class="hold-transition skin-blue sidebar-mini">
+	<div class="wrapper">
+		<header class="main-header"> <ui:insert name="header">
 			<ui:include src="header.xhtml" />
-		</ui:insert>
-		<div id="page-wrapper">
+		</ui:insert> </header>
+		<aside class="main-sidebar"> <section class="sidebar">
+		<ui:insert name="sidebar">
+			<ui:include src="sidebar.xhtml" />
+		</ui:insert> </section> </aside>
+
+		<div class="content-wrapper">
+			<section class="content-header">
 			<div class="row">
 				<div class="col-lg-12">
 					<br />
@@ -50,9 +53,13 @@
 				<div class="col-lg-12">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<ui:insert name="title">
-								<ui:include src="title.xhtml" />
-							</ui:insert>
+							<h4>
+							<i class="fa fa-bars"></i>
+								<b> <ui:insert name="title">
+										<ui:include src="title.xhtml" />
+									</ui:insert>
+								</b>
+							</h4>
 						</div>
 						<div class="panel-body">
 							<div class="row">
@@ -67,14 +74,12 @@
 					</div>
 				</div>
 			</div>
+			</section>
 		</div>
-
+		<footer class="main-footer"> <ui:insert name="footer">
+			<ui:include src="footer.xhtml" />
+		</ui:insert> </footer>
 	</div>
-	<script type="text/javascript">
-	//<![CDATA[ 
 
-		
-	//]]>
-	</script>
 </h:body>
 </html>

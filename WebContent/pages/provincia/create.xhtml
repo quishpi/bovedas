@@ -3,49 +3,36 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:b="http://bootsfaces.net/ui">
+	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="#{root}/WEB-INF/template/layout.xhtml">
 	<ui:define name="title">Provincia</ui:define>
 	<ui:define name="content">
-		<b:form class="form-horizontal">
-			<b:growl id="growl" show-detail="true" global-only="false"
-				show-summary="false" allow-dismiss="true"
-				animation-enter="animated bounceInDown" life="5000" />
+		<h:form id="frm" class="form-horizontal">
+			<p:growl id="growl" sticky="false" life="5000" showDetail="false"
+				autoUpdate="true" />
+
 			<div class="form-group">
-				<label class="col-sm-2 control-label">Nombre*</label>
-				<div class="col-sm-4">
-					<b:inputText class="form-control" id="txtNombre" type="text"
+				<label class="col-sm-1 control-label">Nombre*</label>
+				<div class="col-sm-3">
+					<p:inputText class="form-control"
 						value="#{provinciaCreateBean.provincia.nombre}" required="true"
-						required-message="Nombre es obligatorio" />
+						requiredMessage="Nombre es obligatorio " />
 				</div>
 			</div>
-			<div class="col-sm-2"></div>
+			<div class="col-sm-1"></div>
 			<div class="btn-group">
-				<b:commandButton class="btn btn-primary"
-					action="#{provinciaCreateBean.guardar()}" ajax="true"
-					rendered="#{!provinciaCreateBean.existeParametros()}"
-					onclick="waitingDialog.show('Guardando...');">
-					<span class="fa fa-floppy-o"></span> Guardar
-					</b:commandButton>
-				<b:commandButton class="btn btn-primary"
-					action="#{provinciaCreateBean.actualizar()}" ajax="true"
-					rendered="#{provinciaCreateBean.existeParametros()}"
-					onclick="waitingDialog.show('Actualizando...');">
-					<span class="fa fa-floppy-o"></span> Actualizar</b:commandButton>
-				<b:commandButton class="btn btn-primary"
-					action="#{provinciaCreateBean.eliminar()}" ajax="true"
-					rendered="#{provinciaCreateBean.existeParametros()}"
-					onclick="waitingDialog.show('Eliminando...');">
-					<span class="fa fa-trash-o"></span> Eliminar</b:commandButton>
-				<a href="index.xhtml" class="btn btn-primary"> <span
-					class="fa fa-sign-out"></span> Regresar
-				</a>
+				<p:commandButton value="Guardar"
+					actionListener="#{provinciaCreateBean.guardar()}" icon="fa fa-save"
+					class="btn" ajax="true" update="frm" />
+				<p:commandButton value="Regresar"
+					onclick="location.href = 'index.xhtml';" icon="fa fa-sign-out"
+					class="btn" />
 			</div>
+			<p:messages id="messages" showDetail="false" autoUpdate="true"
+				closable="true" />
 
-			<h:outputText value="#{mensajeBean.mensaje}" escape="false" />
-
-		</b:form>
+		</h:form>
 	</ui:define>
 </ui:composition>
 </html>

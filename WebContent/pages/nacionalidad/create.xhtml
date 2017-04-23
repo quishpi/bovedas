@@ -24,7 +24,7 @@
 			<div class="btn-group">
 				<b:commandButton class="btn btn-primary"
 					action="#{nacionalidadCreateBean.guardar()}" ajax="true"
-					rendered="#{!nacionalidadCreateBean.existeParametros()}"
+					rendered="#{nacionalidadCreateBean.existeParametros() eq false}"
 					onclick="waitingDialog.show('Guardando...');">
 					<span class="fa fa-floppy-o"></span> Guardar
 					</b:commandButton>

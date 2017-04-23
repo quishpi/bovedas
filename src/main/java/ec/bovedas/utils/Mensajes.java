@@ -6,8 +6,8 @@ import javax.faces.context.FacesContext;
 
 public class Mensajes {
 
-	public static void addMsgJSF(Severity severity, String summary, String detail) {
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(severity, summary, detail));
+	public static void addMsg(Severity severity, String mensaje) {
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(severity, mensaje, null));
 
 	}
 }

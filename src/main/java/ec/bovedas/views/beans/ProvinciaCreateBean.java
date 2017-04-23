@@ -2,14 +2,13 @@ package ec.bovedas.views.beans;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import org.apache.log4j.Logger;
-
 import ec.bovedas.controllers.ProvinciaController;
 import ec.bovedas.models.entities.Provincia;
-import ec.bovedas.utils.MensajesTipo;
+import ec.bovedas.utils.Mensajes;
 
 @ManagedBean
 @ViewScoped
@@ -22,9 +21,6 @@ public class ProvinciaCreateBean {
 	@EJB
 	private ProvinciaController provinciaController;
 
-	@ManagedProperty(value = "#{mensajeBean}")
-	private MensajeBean mensajeBean;
-
 	@PostConstruct
 	public void init() {
 		provincia = new Provincia();
@@ -34,10 +30,10 @@ public class ProvinciaCreateBean {
 		LOGGER.info("Init: Guardar");
 		String result = provinciaController.guardar(provincia, true);
 		if (result == null) {
-			mensajeBean.addMsg(MensajesTipo.SUCCESS, "Provincia:", "Guardado correctamente");
 			provincia = new Provincia();
+			Mensajes.addMsg(FacesMessage.SEVERITY_INFO, " Guardado correctamente ok.");
 		} else {
-			mensajeBean.addMsg(MensajesTipo.DANGER, "Error:", result);
+			Mensajes.addMsg(FacesMessage.SEVERITY_ERROR, " Error: " + result);
 		}
 	}
 
@@ -59,14 +55,6 @@ public class ProvinciaCreateBean {
 
 	public void setProvincia(Provincia provincia) {
 		this.provincia = provincia;
-	}
-
-	public MensajeBean getMensajeBean() {
-		return mensajeBean;
-	}
-
-	public void setMensajeBean(MensajeBean mensajeBean) {
-		this.mensajeBean = mensajeBean;
 	}
 
 }
