@@ -3,13 +3,13 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:b="http://bootsfaces.net/ui" xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="#{root}/WEB-INF/template/layout.xhtml">
 
 	<ui:define name="title">Lista de Provincias</ui:define>
 	<ui:define name="content">
-		<b:form>
+		<h:form>
 			<div class="panel">
 				<div class="panel-body">
 					<div class="btn-group">
@@ -22,13 +22,15 @@
 				value="#{provinciaIndexBean.provincias}"
 				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
 				paginator="true" rows="10" style="margin-bottom:20px">
-				<p:column style="width:50px;">
+				<p:column style="width:50px;" sortBy="#{provincia.id}">
 					<f:facet name="header">
 						<h:outputText value="Id" />
 					</f:facet>
 					<h:outputText value="#{provincia.id}" />
 				</p:column>
-				<p:column>
+				<p:column sortBy="#{provincia.nombre}"
+					filterBy="#{provincia.nombre}" 
+					filterStyle="width:100%;">
 					<f:facet name="header">
 						<h:outputText value="Nombre" />
 					</f:facet>
@@ -45,7 +47,7 @@
 					</div>
 				</p:column>
 			</p:dataTable>
-		</b:form>
+		</h:form>
 
 		<script>
 	//<![CDATA[
