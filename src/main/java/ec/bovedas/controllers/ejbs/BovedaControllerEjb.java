@@ -20,20 +20,22 @@ public class BovedaControllerEjb implements BovedaController {
 	}
 
 	@Override
-	public void guardar(Boveda entity, Boolean nuevo) {
+	public String guardar(Boveda entity, Boolean nuevo) {
 		// TODO Auto-generated method stub
+		String msg = null;
 		if (nuevo) {
-			bovedaDao.create(entity);
+			msg = bovedaDao.create(entity);
 		} else {
-			bovedaDao.update(entity);
+			msg = bovedaDao.update(entity);
 		}
+		return msg;
 
 	}
 
 	@Override
-	public void eliminar(Boveda entity) {
+	public String eliminar(Boveda entity) {
 		// TODO Auto-generated method stub
-		bovedaDao.delete(entity);
+		return bovedaDao.delete(entity);
 	}
 
 	@Override

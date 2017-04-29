@@ -1,15 +1,14 @@
 package ec.bovedas.utils;
 
-public enum TipoBoveda {
-	NICHO("Nicho"), BOVEDA("Bóveda");
-
+public enum Estado {
+	LIBRE("Libre"), OCUPADO("Ocupado");
 	private String description;
 
-	private TipoBoveda(String description) {
+	private Estado(String description) {
 		this.description = description;
 	}
 
-	public String getTipoBoveda() {
+	public String getEstado() {
 		return description;
 	}
 

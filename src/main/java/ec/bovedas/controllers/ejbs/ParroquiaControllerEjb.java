@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import ec.bovedas.controllers.ParroquiaController;
 import ec.bovedas.models.daos.ParroquiaDao;
+import ec.bovedas.models.entities.Canton;
 import ec.bovedas.models.entities.Parroquia;
 
 @Stateless
@@ -48,6 +49,11 @@ public class ParroquiaControllerEjb implements ParroquiaController {
 	@Override
 	public Integer contar() {
 		return parroquiaDao.count();
+	}
+
+	@Override
+	public List<Parroquia> listar(Canton canton) {
+		return parroquiaDao.find(canton);
 	}
 
 }

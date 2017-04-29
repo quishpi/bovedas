@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="#{root}/WEB-INF/template/layout.xhtml">
+	<ui:define name="title">Fallecidos</ui:define>
+	<ui:define name="content">
+		<h:form id="frm" class="form-horizontal">
+			<p:growl id="growl" sticky="false" life="5000" showDetail="false"
+				autoUpdate="true" />
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Cedula*</label>
+				<div class="col-sm-4">
+					<p:inputText class="form-control"
+						value="#{fallecidoCreateBean.fallecido.cedula}" required="true"
+						requiredMessage="Cedula es obligatorio " />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Nombres*</label>
+				<div class="col-sm-4">
+					<p:inputText class="form-control"
+						value="#{fallecidoCreateBean.fallecido.nombre}" required="true"
+						requiredMessage="Nombres es obligatorio " />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Apellidos*</label>
+				<div class="col-sm-4">
+					<p:inputText class="form-control"
+						value="#{fallecidoCreateBean.fallecido.apelido}" required="true"
+						requiredMessage="Apellidos es obligatorio " />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Numero Registro
+					Inscripcion*</label>
+				<div class="col-sm-4">
+					<p:inputText class="form-control"
+						value="#{fallecidoCreateBean.fallecido.numeroregistroinscripcion}"
+						required="true"
+						requiredMessage="Registro de inscrpcion es obligatorio " />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Nacionalidad*</label>
+				<div class="col-sm-4">
+					<p:selectOneMenu id="nacionalidad" required="true"
+						requiredMessage="Nacionalidad es obligatorio "
+						value="#{fallecidoCreateBean.fallecido.nacionalidad}"
+						converter="omnifaces.SelectItemsConverter" style="width:100%;">
+						<f:selectItem itemLabel="Seleccione" itemValue=""
+							noSelectionOption="true" />
+						<f:selectItems value="#{nacionalidadIndexBean.nacionalidades}"
+							var="nacionalidad" itemLabel="#{nacionalidad.nombre}"
+							itemValue="#{nacionalidad}" />
+					</p:selectOneMenu>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Genero*</label>
+				<div class="col-sm-4">
+					<p:selectOneMenu id="genero" required="true"
+						requiredMessage="Genero es obligatorio "
+						value="#{fallecidoCreateBean.fallecido.genero}"
+						converter="omnifaces.SelectItemsConverter" style="width:100%;">
+						<f:selectItem itemLabel="Seleccione" itemValue=""
+							noSelectionOption="true" />
+						<f:selectItems value="#{fallecidoCreateBean.generos}" var="genero"
+							itemLabel="#{genero.genero}" itemValue="#{genero}" />
+					</p:selectOneMenu>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Estado Civil*</label>
+				<div class="col-sm-4">
+					<p:selectOneMenu id="estadoCivil" required="true"
+						requiredMessage="Estado civil es obligatorio "
+						value="#{fallecidoCreateBean.fallecido.estadocivil}"
+						converter="omnifaces.SelectItemsConverter" style="width:100%;">
+						<f:selectItem itemLabel="Seleccione" itemValue=""
+							noSelectionOption="true" />
+						<f:selectItems value="#{fallecidoCreateBean.estadoCiviles}"
+							var="estadoCivil" itemLabel="#{estadoCivil.estadoCivil}"
+							itemValue="#{estadoCivil}" />
+					</p:selectOneMenu>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Edad*</label>
+				<div class="col-sm-4">
+					<p:spinner value="#{fallecidoCreateBean.fallecido.edad}" min="1"
+						required="true" requiredMessage="Edad de fila es obligatorio " />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Fecha Fallecimiento*</label>
+				<div class="col-sm-4">
+					<p:calendar
+						value="#{fallecidoCreateBean.fallecido.fechafallecimiento}"
+						locale="de" navigator="true" pattern="yyyy-MMM-dd" required="true"
+						requiredMessage="Fecha Fallecimiento de fila es obligatorio " />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Fecha Inscripcion*</label>
+				<div class="col-sm-4">
+					<p:calendar
+						value="#{fallecidoCreateBean.fallecido.fechainscripciondefuncion}"
+						locale="de" navigator="true" pattern="yyyy-MMM-dd" required="true"
+						requiredMessage="Fecha Inscripcion es obligatorio " />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Fecha Ingreso Cementerio*</label>
+				<div class="col-sm-4">
+					<p:calendar
+						value="#{fallecidoCreateBean.fallecido.fechaingresocementerio}"
+						locale="de" navigator="true" pattern="yyyy-MMM-dd" required="true"
+						requiredMessage="Fecha Ingreso Cementerio es obligatorio " />
+				</div>
+			</div>
+
+			<div class="col-sm-1"></div>
+			<div class="btn-group">
+				<p:commandButton value="Guardar"
+					actionListener="#{fallecidoCreateBean.guardar()}" icon="fa fa-save"
+					class="btn" ajax="true" update="frm" />
+				<p:commandButton value="Regresar"
+					onclick="location.href = 'index.xhtml';" icon="fa fa-sign-out"
+					class="btn" />
+			</div>
+			<p:messages id="messages" showDetail="false" autoUpdate="true"
+				closable="true" />
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

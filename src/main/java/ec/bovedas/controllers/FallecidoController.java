@@ -6,9 +6,9 @@ import ec.bovedas.models.entities.Fallecido;
 
 public interface FallecidoController {
 
-	public void guardar(Fallecido entity, Boolean nuevo);
+	public String guardar(Fallecido entity, Boolean nuevo);
 
-	public void eliminar(Fallecido entity);
+	public String eliminar(Fallecido entity);
 
 	public Fallecido buscar(Integer id);
 

@@ -25,7 +25,7 @@ public class Fallecido {
 
 	public Fallecido(String cedula, String nombre, String apelido, String numeroregistroinscripcion,
 			Date fechainscripciondefuncion, Date fechafallecimiento, Nacionalidad nacionalidad, Genero genero,
-			EstadoCivil estadocivil, Integer edad, String archivoactadefuncion, Date fechaingresocementerio) {
+			EstadoCivil estadocivil, Integer edad, Date fechaingresocementerio) {
 		super();
 		this.id = null;
 		this.cedula = cedula;
@@ -38,7 +38,6 @@ public class Fallecido {
 		this.genero = genero;
 		this.estadocivil = estadocivil;
 		this.edad = edad;
-		this.archivoactadefuncion = archivoactadefuncion;
 		this.fechaingresocementerio = fechaingresocementerio;
 	}
 
@@ -76,9 +75,6 @@ public class Fallecido {
 
 	@Column(name = "edad", unique = false, nullable = false, length = 50)
 	private Integer edad;
-
-	@Column(name = "archivoactadefuncion", unique = false, nullable = false, length = 100)
-	private String archivoactadefuncion;
 
 	@Column(name = "fechaingresocementerio", unique = false, nullable = false, length = 50)
 	private Date fechaingresocementerio;
@@ -171,14 +167,6 @@ public class Fallecido {
 		this.edad = edad;
 	}
 
-	public String getArchivoactadefuncion() {
-		return archivoactadefuncion;
-	}
-
-	public void setArchivoactadefuncion(String archivoactadefuncion) {
-		this.archivoactadefuncion = archivoactadefuncion;
-	}
-
 	public Date getFechaingresocementerio() {
 		return fechaingresocementerio;
 	}
@@ -193,8 +181,7 @@ public class Fallecido {
 				+ ", numeroregistroinscripcion=" + numeroregistroinscripcion + ", fechainscripciondefuncion="
 				+ fechainscripciondefuncion + ", fechafallecimiento=" + fechafallecimiento + ", nacionalidad="
 				+ nacionalidad + ", genero=" + genero + ", estadocivil=" + estadocivil + ", edad=" + edad
-				+ ", archivoactadefuncion=" + archivoactadefuncion + ", fechaingresocementerio="
-				+ fechaingresocementerio + "]";
+				+ ", fechaingresocementerio=" + fechaingresocementerio + "]";
 	}
 
 }

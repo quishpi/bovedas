@@ -5,9 +5,9 @@ import java.util.List;
 import ec.bovedas.models.entities.Boveda;
 
 public interface BovedaController {
-	public void guardar(Boveda entity, Boolean nuevo);
+	public String guardar(Boveda entity, Boolean nuevo);
 
-	public void eliminar(Boveda entity);
+	public String eliminar(Boveda entity);
 
 	public Boveda buscar(Integer id);
 

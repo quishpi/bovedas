@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import ec.bovedas.utils.Estado;
+import ec.bovedas.utils.EstadoFisico;
 import ec.bovedas.utils.TipoBoveda;
 
 @Entity
@@ -22,8 +24,8 @@ public class Boveda {
 		super();
 	}
 
-	public Boveda(Integer numero, Mausoleo mausoleo, Integer fila, Integer columna, Boolean estado,
-			TipoBoveda tipoBoveda, Integer estadoFisico) {
+	public Boveda(Integer numero, Mausoleo mausoleo, Integer fila, Integer columna, Estado estado,
+			TipoBoveda tipoBoveda, EstadoFisico estadoFisico) {
 		super();
 		this.id = null;
 		this.numero = numero;
@@ -46,20 +48,20 @@ public class Boveda {
 	@ManyToOne(cascade = CascadeType.REFRESH, optional = false)
 	private Mausoleo mausoleo;
 	
-	@Column(name = "fila", unique = false, nullable = false)
+	@Column(name = "fila", nullable = false)
 	private Integer fila;
 	
-	@Column(name = "columna", unique = false, nullable = false)
+	@Column(name = "columna", nullable = false)
 	private Integer columna;
 	
 	@Column(name = "estado", nullable = false)
-	private Boolean estado = false;
+	private Estado estado ;
 	
-	//@ManyToOne(cascade = CascadeType.REFRESH, optional = false)
+	@Column(name = "tipoBoveda", nullable = false)
 	private TipoBoveda tipoBoveda;
 	
-	@Column(name = "estadoFisico", unique = false, nullable = false)
-	private Integer estadoFisico;
+	@Column(name = "estadoFisico", nullable = false)
+	private EstadoFisico estadoFisico;
 
 	public Integer getId() {
 		return id;
@@ -101,11 +103,11 @@ public class Boveda {
 		this.columna = columna;
 	}
 
-	public Boolean getEstado() {
+	public Estado getEstado() {
 		return estado;
 	}
 
-	public void setEstado(Boolean estado) {
+	public void setEstado(Estado estado) {
 		this.estado = estado;
 	}
 
@@ -117,11 +119,11 @@ public class Boveda {
 		this.tipoBoveda = tipoBoveda;
 	}
 
-	public Integer getEstadoFisico() {
+	public EstadoFisico getEstadoFisico() {
 		return estadoFisico;
 	}
 
-	public void setEstadoFisico(Integer estadoFisico) {
+	public void setEstadoFisico(EstadoFisico estadoFisico) {
 		this.estadoFisico = estadoFisico;
 	}
 
