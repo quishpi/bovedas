@@ -22,19 +22,19 @@
 				value="#{cantonIndexBean.cantones}"
 				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
 				paginator="true" rows="10" style="margin-bottom:20px">
-				<p:column style="width:50px;">
+				<p:column style="width:50px;" sortBy="#{canton.id}">
 					<f:facet name="header">
 						<h:outputText value="Id" />
 					</f:facet>
 					<h:outputText value="#{canton.id}" />
 				</p:column>
-				<p:column>
+				<p:column sortBy="#{canton.nombre}">
 					<f:facet name="header">
 						<h:outputText value="Nombre" />
 					</f:facet>
 					<h:outputText value="#{canton.nombre}" />
 				</p:column>
-				<p:column>
+				<p:column sortBy="#{canton.provincia.nombre}">
 					<f:facet name="header">
 						<h:outputText value="provincia" />
 					</f:facet>

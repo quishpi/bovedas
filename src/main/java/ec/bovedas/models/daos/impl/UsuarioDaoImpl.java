@@ -19,14 +19,14 @@ public class UsuarioDaoImpl extends GenericDaoImpl<Usuario, Integer> implements 
 	}
 
 	@Override
-	public Usuario findUsuario(String usuario, String clave) {
+	public Usuario findUsuario(String cedula, String clave) {
 		Usuario result = new Usuario();
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT u FROM Usuario u ");
-		sql.append("WHERE u.usuario = :usuario and clave = :clave");
+		sql.append("WHERE u.cedula = :cedula and clave = :clave");
 
 		Query query = em.createQuery(sql.toString());
-		query.setParameter("usuario", usuario).setParameter("clave", clave);
+		query.setParameter("cedula", cedula).setParameter("clave", clave);
 
 		if (!query.getResultList().isEmpty()) {
 			result = (Usuario) query.getSingleResult();

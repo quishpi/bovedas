@@ -14,9 +14,9 @@ public class UsuarioControllerEjb implements UsuarioController {
 
 	@Inject
 	private UsuarioDao usuarioDao;
-	
-	public UsuarioControllerEjb(){
-		
+
+	public UsuarioControllerEjb() {
+
 	}
 
 	@Override
@@ -39,8 +39,8 @@ public class UsuarioControllerEjb implements UsuarioController {
 	}
 
 	@Override
-	public Usuario buscar(String usuario, String clave) {
-		return usuarioDao.findUsuario(usuario, clave);
+	public Usuario buscar(String cedula, String clave) {
+		return usuarioDao.findUsuario(cedula, clave);
 	}
 
 	@Override

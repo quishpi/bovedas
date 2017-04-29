@@ -24,7 +24,9 @@
 			<div class="btn-group">
 				<p:commandButton value="Guardar"
 					actionListener="#{provinciaCreateBean.guardar()}" icon="fa fa-save"
-					class="btn" ajax="true" update="frm" />
+					class="btn" ajax="true" update="frm"
+					onstart="PF('statusDialog').show()"
+					onsuccess="PF('statusDialog').hide()" />
 				<p:commandButton value="Regresar"
 					onclick="location.href = 'index.xhtml';" icon="fa fa-sign-out"
 					class="btn" immediate="true" />

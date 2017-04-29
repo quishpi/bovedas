@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head></h:head>
 <h:body>
@@ -195,41 +196,40 @@
 			<!-- User Account: style can be found in dropdown.less -->
 			<li class="dropdown user user-menu"><a href="#"
 				class="dropdown-toggle" data-toggle="dropdown"> <img
-					src="dist/img/user2-160x160.jpg" class="user-image"
-					alt="User Image" /> <span class="hidden-xs">Administrador</span>
+					src="../../resources/images/user2-160x160.jpg" class="user-image"
+					alt="User Image" /> <span class="hidden-xs">
+						#{usuarioLoginBean.usuario.nombre}</span>
 			</a>
 				<ul class="dropdown-menu">
 					<!-- User image -->
-					<li class="user-header"><img src="dist/img/user2-160x160.jpg"
-						class="img-circle" alt="User Image" />
-
+					<li class="user-header"><img
+						src="../../resources/images/user2-160x160.jpg" class="img-circle"
+						alt="User Image" />
 						<p>
-							Alexander Pierce - Web Developer <small>Member since Nov.
-								2012</small>
+							#{usuarioLoginBean.usuario.nombre.concat("
+							").concat(usuarioLoginBean.usuario.apellido)}
+							<small>Administrador</small>
 						</p></li>
 					<!-- Menu Body -->
-					<li class="user-body">
-						<div class="row">
-							<div class="col-xs-4 text-center">
-								<a href="#">Followers</a>
+					<li class="user-body"><h:form>
+							<div class="row">
+								<div class="col-xs-4 text-center"></div>
+								<div class="col-xs-4 text-center"></div>
+								<div class="col-xs-4 text-center"></div>
 							</div>
-							<div class="col-xs-4 text-center">
-								<a href="#">Sales</a>
-							</div>
-							<div class="col-xs-4 text-center">
-								<a href="#">Friends</a>
-							</div>
-						</div> <!-- /.row -->
-					</li>
+						</h:form></li>
 					<!-- Menu Footer-->
-					<li class="user-footer">
-						<div class="pull-left">
-							<a href="#" class="btn btn-default btn-flat">Profile</a>
-						</div>
-						<div class="pull-right">
-							<a href="#" class="btn btn-default btn-flat">Sign out</a>
-						</div>
-					</li>
+					<li class="user-footer"><h:form>
+							<div class="pull-left">
+								<p:commandLink class="btn btn-default btn-flat"
+									actionListener="#{usuarioLoginBean.logOut()}">Perfil</p:commandLink>
+							</div>
+							<div class="pull-right">
+								<p:commandLink class="btn btn-default btn-flat"
+									actionListener="#{usuarioLoginBean.logOut()}">Salir</p:commandLink>
+							</div>
+						</h:form></li>
+
 				</ul></li>
 		</ul>
 	</div>
