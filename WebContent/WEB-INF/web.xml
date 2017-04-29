@@ -22,8 +22,13 @@
 	</servlet-mapping>
 	<context-param>
 		<param-name>primefaces.THEME</param-name>
-		<param-value>humanity</param-value>
+		<!-- <param-value>humanity</param-value> -->
+		<param-value>aristo</param-value>
+
 	</context-param>
+	<!-- <session-config> <session-timeout>1</session-timeout> </session-config> 
+		<listener> <description>sessionListener</description> <listener-class>ec.bovedas.views.beans.ApplicationSessionListener</listener-class> 
+		</listener> -->
 	<context-param>
 		<description>State saving method: 'client' or 'server' (=default). See JSF Specification 2.5.2</description>
 		<param-name>javax.faces.STATE_SAVING_METHOD</param-name>

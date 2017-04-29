@@ -22,13 +22,13 @@
 				value="#{nacionalidadIndexBean.nacionalidades}"
 				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
 				paginator="true" rows="10" style="margin-bottom:20px">
-				<p:column style="width:50px;">
+				<p:column style="width:50px;" sortBy="#{nacionalidad.id}">
 					<f:facet name="header">
 						<h:outputText value="Id" />
 					</f:facet>
 					<h:outputText value="#{nacionalidad.id}" />
 				</p:column>
-				<p:column>
+				<p:column sortBy="#{nacionalidad.nombre}">
 					<f:facet name="header">
 						<h:outputText value="Nombre" />
 					</f:facet>

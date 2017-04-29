@@ -22,25 +22,25 @@
 				value="#{parroquiaIndexBean.parroquias}"
 				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
 				paginator="true" rows="10" style="margin-bottom:20px">
-				<p:column style="width:50px;">
+				<p:column style="width:50px;" sortBy="#{parroquia.id}">
 					<f:facet name="header">
 						<h:outputText value="Id" />
 					</f:facet>
 					<h:outputText value="#{parroquia.id}" />
 				</p:column>
-				<p:column>
+				<p:column sortBy="#{parroquia.nombre}">
 					<f:facet name="header">
 						<h:outputText value="Nombre" />
 					</f:facet>
-					<h:outputText value="#{parroquia.nombre}" />
+					<h:outputText value="#{parroquia.canton.nombre}" />
 				</p:column>
-				<p:column>
+				<p:column sortBy="#{parroquia.nombre}">
 					<f:facet name="header">
 						<h:outputText value="Cantón" />
 					</f:facet>
 					<h:outputText value="#{parroquia.canton.nombre}" />
 				</p:column>
-				<p:column>
+				<p:column sortBy="#{parroquia.canton.provincia.nombre}">
 					<f:facet name="header">
 						<h:outputText value="Provincia" />
 					</f:facet>

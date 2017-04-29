@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<meta charset="utf-8" />
@@ -33,6 +34,20 @@
 	<link rel="stylesheet" href="/bovedas/resources/css/style.css" />
 </h:head>
 <h:body class="hold-transition skin-blue sidebar-mini">
+	<f:metadata>
+		<f:event type="preRenderView"
+			listener="#{usuarioLoginBean.checkLogedIn()}" />
+	</f:metadata>
+	<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
+		closable="false" resizable="false" showHeader="false">
+		<p:graphicImage url="../../resources/images/loadingbar.gif" />
+	</p:dialog>
+	<h:form>
+		<p:idleMonitor timeout="#{1000*60*10}">
+			<p:ajax event="idle" listener="#{usuarioLoginBean.logOut()}" />
+		</p:idleMonitor>
+
+	</h:form>
 	<div class="wrapper">
 		<header class="main-header"> <ui:insert name="header">
 			<ui:include src="header.xhtml" />
@@ -54,8 +69,7 @@
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h4>
-							<i class="fa fa-bars"></i>
-								<b> <ui:insert name="title">
+								<i class="fa fa-bars"></i> <b> <ui:insert name="title">
 										<ui:include src="title.xhtml" />
 									</ui:insert>
 								</b>

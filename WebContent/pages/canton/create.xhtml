@@ -19,7 +19,7 @@
 						requiredMessage="Provincia es obligatorio "
 						value="#{cantonCreateBean.canton.provincia}"
 						converter="omnifaces.SelectItemsConverter" style="width:100%;">
-						<f:selectItem itemLabel="Selecciones" itemValue=""
+						<f:selectItem itemLabel="Seleccione" itemValue=""
 							noSelectionOption="true" />
 						<f:selectItems value="#{provinciaIndexBean.provincias}"
 							var="provincia" itemLabel="#{provincia.nombre}"
@@ -39,7 +39,9 @@
 			<div class="btn-group">
 				<p:commandButton value="Guardar"
 					actionListener="#{cantonCreateBean.guardar()}" icon="fa fa-save"
-					class="btn" ajax="true" update="frm" />
+					class="btn" ajax="true" update="frm"
+					onstart="PF('statusDialog').show()"
+					onsuccess="PF('statusDialog').hide()" />
 				<p:commandButton value="Regresar"
 					onclick="location.href = 'index.xhtml';" icon="fa fa-sign-out"
 					class="btn" immediate="true" />
