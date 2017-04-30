@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="#{root}/WEB-INF/template/layout.xhtml">
+	<ui:define name="title">Bóvedas</ui:define>
+	<ui:define name="content">
+		<h:form id="frm" class="form-horizontal">
+			<p:growl id="growl" sticky="false" life="5000" showDetail="false"
+				autoUpdate="true" />
+
+			<div class="form-group">
+				<label class="col-sm-1 control-label">Número Bóveda*</label>
+				<div class="col-sm-4">
+					<p:inputText class="form-control"
+						value="#{bovedaCreateBean.boveda.numero}" required="true"
+						requiredMessage="Código es obligatorio " />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-1 control-label">Mausoleo*</label>
+				<div class="col-sm-4">
+					<p:selectOneMenu id="mausoleo" required="true"
+						requiredMessage="Mausoleo es obligatorio "
+						value="#{bovedaCreateBean.boveda.mausoleo}"
+						converter="omnifaces.SelectItemsConverter" style="width:100%;">
+						<f:selectItem itemLabel="Seleccione" itemValue=""
+							noSelectionOption="true" />
+						<f:selectItems value="#{mausoleoIndexBean.mausoleos}" var="mausoleo"
+							itemLabel="#{mausoleo.nombre}" itemValue="#{mausoleo}" />
+					</p:selectOneMenu>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-1 control-label">Fila*</label>
+				<div class="col-sm-4">
+					<p:spinner value="#{bovedaCreateBean.boveda.fila}" min="1"
+						required="true" requiredMessage="Número de fila es obligatorio " />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-1 control-label">Columna*</label>
+				<div class="col-sm-4">
+					<p:spinner value="#{bovedaCreateBean.boveda.columna}" min="1"
+						required="true"
+						requiredMessage="Número de columna es obligatorio " />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-1 control-label">Estado*</label>
+				<div class="col-sm-4">
+					<p:selectOneMenu id="estado" required="true"
+						requiredMessage="Estado es obligatorio "
+						value="#{bovedaCreateBean.boveda.estado}"
+						converter="omnifaces.SelectItemsConverter" style="width:100%;">
+						<f:selectItem itemLabel="Seleccione" itemValue=""
+							noSelectionOption="true" />
+						<f:selectItems value="#{bovedaCreateBean.estados}" var="estado"
+							itemLabel="#{estado.estado}" itemValue="#{estado}" />
+					</p:selectOneMenu>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-1 control-label">Tipo Bóveda*</label>
+				<div class="col-sm-4">
+					<p:selectOneMenu id="tipoBoveda" required="true"
+						requiredMessage="Tipo Bóveda es obligatorio "
+						value="#{bovedaCreateBean.boveda.tipoBoveda}"
+						converter="omnifaces.SelectItemsConverter" style="width:100%;">
+						<f:selectItem itemLabel="Seleccione" itemValue=""
+							noSelectionOption="true" />
+						<f:selectItems value="#{bovedaCreateBean.tipoBovedas}"
+							var="tipoBoveda" itemLabel="#{tipoBoveda.tipoBoveda}"
+							itemValue="#{tipoBoveda}" />
+					</p:selectOneMenu>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-1 control-label">Estado Físico*</label>
+				<div class="col-sm-4">
+					<p:selectOneMenu id="estadoFisico" required="true"
+						requiredMessage="Estado Físico es obligatorio "
+						value="#{bovedaCreateBean.boveda.estadoFisico}"
+						converter="omnifaces.SelectItemsConverter" style="width:100%;">
+						<f:selectItem itemLabel="Seleccione" itemValue=""
+							noSelectionOption="true" />
+						<f:selectItems value="#{bovedaCreateBean.estadoFisicos}"
+							var="estadoFisico" itemLabel="#{estadoFisico.estadoFisico}"
+							itemValue="#{estadoFisico}" />
+					</p:selectOneMenu>
+				</div>
+			</div>
+
+			<div class="col-sm-1"></div>
+			<div class="btn-group">
+				<p:commandButton value="Guardar"
+					actionListener="#{bovedaCreateBean.guardar()}" icon="fa fa-save"
+					class="btn" ajax="true" update="frm" />
+				<p:commandButton value="Regresar"
+					onclick="location.href = 'index.xhtml';" icon="fa fa-sign-out"
+					class="btn" />
+			</div>
+			<p:messages id="messages" showDetail="false" autoUpdate="true"
+				closable="true" />
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

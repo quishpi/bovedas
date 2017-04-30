@@ -20,20 +20,23 @@ public class FallecidoControllerEjb implements FallecidoController {
 	}
 
 	@Override
-	public void guardar(Fallecido entity, Boolean nuevo) {
+	public String guardar(Fallecido entity, Boolean nuevo) {
 		// TODO Auto-generated method stub
 
+		String msg = null;
 		if (nuevo) {
-			fallecidoDao.create(entity);
+			msg = fallecidoDao.create(entity);
 		} else {
-			fallecidoDao.update(entity);
+			msg = fallecidoDao.update(entity);
 		}
+		return msg;
+
 	}
 
 	@Override
-	public void eliminar(Fallecido entity) {
+	public String eliminar(Fallecido entity) {
 		// TODO Auto-generated method stub
-		fallecidoDao.delete(entity);
+		return fallecidoDao.delete(entity);
 
 	}
 

@@ -41,25 +41,25 @@ public class Representante {
 	@Column(name = "cedula", unique = true, nullable = false, length = 13)
 	private String cedula;
 	
-	@Column(name = "nombre", unique = false, nullable = false, length = 50)
+	@Column(name = "nombre", nullable = false, length = 50)
 	private String nombre;
 	
-	@Column(name = "apellido", unique = false, nullable = false, length = 50)
+	@Column(name = "apellido",  nullable = false, length = 50)
 	private String apelido;
 	
 	@ManyToOne(cascade = CascadeType.REFRESH, optional = false)
 	private Parroquia parroquia;
 	
-	@Column(name = "direccion", unique = false, nullable = false, length = 50)
+	@Column(name = "direccion", nullable = false, length = 50)
 	private String direccion;
 	
-	@Column(name = "telefono", unique = false, nullable = false, length = 50)
+	@Column(name = "telefono",  nullable = false, length = 50)
 	private String telefono;
 	
 	@Column(name = "porcentajeExoneracion", nullable = false)
 	private Double porcentajeExoneracion = 0.0;
 	
-	@Column(name = "observacion", unique = false, nullable = false, length = 500)
+	@Column(name = "observacion", nullable = false, length = 500)
 	private String observacion;
 
 	public Integer getId() {

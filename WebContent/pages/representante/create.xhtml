@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="#{root}/WEB-INF/template/layout.xhtml">
+	<ui:define name="title">Representantes</ui:define>
+	<ui:define name="content">
+		<h:form id="frm" class="form-horizontal">
+			<p:growl id="growl" sticky="false" life="5000" showDetail="false"
+				autoUpdate="true" />
+
+			<div class="form-group">
+				<label class="col-sm-1 control-label">Cedula*</label>
+				<div class="col-sm-4">
+					<p:inputText class="form-control"
+						value="#{representanteCreateBean.representante.cedula}"
+						required="true" requiredMessage="Nombre es obligatorio " />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-1 control-label">Nombres*</label>
+				<div class="col-sm-4">
+					<p:inputText class="form-control"
+						value="#{representanteCreateBean.representante.nombre}"
+						required="true" requiredMessage="Nombre es obligatorio " />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-1 control-label">Apellidos*</label>
+				<div class="col-sm-4">
+					<p:inputText class="form-control"
+						value="#{representanteCreateBean.representante.apelido}"
+						required="true" requiredMessage="Código es obligatorio " />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-1 control-label">Provincia*</label>
+				<div class="col-sm-3">
+					<p:selectOneMenu id="provincia" required="true"
+						requiredMessage="Provincia es obligatorio "
+						value="#{representanteCreateBean.provincia}"
+						converter="omnifaces.SelectItemsConverter" style="width:100%;">
+						<p:ajax listener="#{representanteCreateBean.onProvinciaChange()}"
+							update="canton" />
+						<f:selectItem itemLabel="Seleccione" itemValue=""
+							noSelectionOption="true" />
+						<f:selectItems value="#{representanteCreateBean.provincias}"
+							var="provincia" itemLabel="#{provincia.nombre}"
+							itemValue="#{provincia}" />
+					</p:selectOneMenu>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-1 control-label">Cantón*</label>
+				<div class="col-sm-3">
+					<p:selectOneMenu id="canton" required="true"
+						requiredMessage="Canton es obligatorio "
+						value="#{representanteCreateBean.canton}"
+						converter="omnifaces.SelectItemsConverter" style="width:100%;">
+						<p:ajax listener="#{representanteCreateBean.onCantonChange()}"
+							update="parroquia" />
+						<f:selectItem itemLabel="Seleccione" itemValue=""
+							noSelectionOption="true" />
+						<f:selectItems value="#{representanteCreateBean.cantones }"
+							var="canton" itemLabel="#{canton.nombre}" itemValue="#{canton}" />
+					</p:selectOneMenu>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-1 control-label">Parroquia*</label>
+				<div class="col-sm-3">
+					<p:selectOneMenu id="parroquia" required="true"
+						requiredMessage="Parroquia es obligatorio "
+						value="#{representanteCreateBean.representante.parroquia}"
+						converter="omnifaces.SelectItemsConverter" style="width:100%;">
+						<f:selectItem itemLabel="Seleccione" itemValue=""
+							noSelectionOption="true" />
+						<f:selectItems value="#{representanteCreateBean.parroquias }"
+							var="parroquia" itemLabel="#{parroquia.nombre}"
+							itemValue="#{parroquia}" />
+					</p:selectOneMenu>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-1 control-label">Exoneracion*</label>
+				<div class="col-sm-5">
+					<p:spinner
+						value="#{representanteCreateBean.representante.porcentajeExoneracion}"
+						stepFactor="0.25" required="true"
+						requiredMessage="Número de bóvedas es obligatorio " />
+				</div>
+			</div>
+
+
+			<div class="form-group">
+				<label class="col-sm-1 control-label">Direccion*</label>
+				<div class="col-sm-4">
+					<p:inputText class="form-control"
+						value="#{representanteCreateBean.representante.direccion}"
+						required="true" requiredMessage="Direccion es obligatorio " />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-1 control-label">Telefono*</label>
+				<div class="col-sm-4">
+					<p:inputText class="form-control"
+						value="#{representanteCreateBean.representante.telefono}"
+						required="true" requiredMessage="Telefono es obligatorio " />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-1 control-label">Observaciones*</label>
+				<div class="col-sm-6">
+					<p:inputText class="form-control"
+						value="#{representanteCreateBean.representante.observacion}" />
+				</div>
+			</div>
+
+			<div class="col-sm-1"></div>
+			<div class="btn-group">
+				<p:commandButton value="Guardar"
+					actionListener="#{representanteCreateBean.guardar()}"
+					icon="fa fa-save" class="btn" ajax="true" update="frm" />
+				<p:commandButton value="Regresar"
+					onclick="location.href = 'index.xhtml';" icon="fa fa-sign-out"
+					class="btn" />
+			</div>
+			<p:messages id="messages" showDetail="false" autoUpdate="true"
+				closable="true" />
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

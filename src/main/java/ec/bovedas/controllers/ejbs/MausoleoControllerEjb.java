@@ -19,20 +19,24 @@ public class MausoleoControllerEjb implements MausoleoController {
 	}
 
 	@Override
-	public void guardar(Mausoleo entity, Boolean nuevo) {
+	public String guardar(Mausoleo entity, Boolean nuevo) {
 		// TODO Auto-generated method stub
+		String msg = null;
 		if (nuevo) {
-			mausoleoDao.create(entity);
+			msg= mausoleoDao.create(entity);
 		} else {
-			mausoleoDao.update(entity);
+			msg=mausoleoDao.update(entity);
 		}
-
+		return msg;
 	}
 
 	@Override
-	public void eliminar(Mausoleo entity) {
+	public String eliminar(Mausoleo entity) {
 		// TODO Auto-generated method stub
+		String msg = null;
 		mausoleoDao.delete(entity);
+		return msg;
+		
 
 	}
 

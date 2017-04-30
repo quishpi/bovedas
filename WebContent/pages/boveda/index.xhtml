@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="#{root}/WEB-INF/template/layout.xhtml">
+
+	<ui:define name="title">Lista de Mausoleos</ui:define>
+	<ui:define name="content">
+		<h:form>
+			<div class="panel">
+				<div class="panel-body">
+					<div class="btn-group">
+						<p:commandButton onclick="location.href = 'create.xhtml';"
+							icon="fa fa-plus" class="btn" value="Nuevo" />
+					</div>
+				</div>
+			</div>
+			<p:dataTable id="tblLista" var="boveda"
+				value="#{bovedaIndexBean.bovedas}"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+				paginator="true" rows="10" style="margin-bottom:20px">
+				<p:column style="width:50px;">
+					<f:facet name="header">
+						<h:outputText value="Id" />
+					</f:facet>
+					<h:outputText value="#{boveda.id}" />
+				</p:column>
+				<p:column style="width:80px;">
+					<f:facet name="header">
+						<h:outputText value="Número Bóveda" />
+					</f:facet>
+					<h:outputText value="#{boveda.numero}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Mausoleo" />
+					</f:facet>
+					<h:outputText value="#{boveda.mausoleo.nombre}" />
+				</p:column>
+				<p:column style="width:80px;">
+					<f:facet name="header">
+						<h:outputText value="Número Fila" />
+					</f:facet>
+					<h:outputText value="#{boveda.fila}" />
+				</p:column>
+				<p:column style="width:80px;">
+					<f:facet name="header">
+						<h:outputText value="Número Columna" />
+					</f:facet>
+					<h:outputText value="#{boveda.columna}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Estado" />
+					</f:facet>
+					<h:outputText value="#{boveda.estado.estado}" />
+				</p:column>
+				<p:column>
+
+					<f:facet name="header">
+						<h:outputText value="Tipo Bóveda" />
+					</f:facet>
+					<h:outputText value="#{boveda.tipoBoveda.tipoBoveda}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Estado Físico" />
+					</f:facet>
+					<h:outputText value="#{boveda.estadoFisico.estadoFisico}" />
+				</p:column>
+				<p:column style="width:100px;">
+					<f:facet name="header">
+					</f:facet>
+					<div class="btn-group">
+						<p:commandButton onclick="location.href = 'index.xhtml';"
+							icon="fa fa-edit" class="btn" />
+						<p:commandButton onclick="location.href = 'index.xhtml';"
+							icon="fa fa-trash" class="btn" />
+					</div>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+
+		<script>
+	//<![CDATA[
+	
+	//]]>
+	</script>
+
+	</ui:define>
+</ui:composition>
+</html>

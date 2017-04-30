@@ -6,9 +6,9 @@ import ec.bovedas.models.entities.Representante;
 
 public interface RepresentanteController {
 
-	public void guardar(Representante entity, Boolean nuevo);
+	public String guardar(Representante entity, Boolean nuevo);
 
-	public void eliminar(Representante entity);
+	public String eliminar(Representante entity);
 
 	public Representante buscar(Integer id);
 

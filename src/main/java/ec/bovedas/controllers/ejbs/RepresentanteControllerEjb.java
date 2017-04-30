@@ -2,12 +2,16 @@ package ec.bovedas.controllers.ejbs;
 
 import java.util.List;
 
+import javax.ejb.Stateless;
 import javax.inject.Inject;
+
+import org.hibernate.loader.custom.Return;
 
 import ec.bovedas.controllers.RepresentanteController;
 import ec.bovedas.models.daos.RepresentanteDao;
 import ec.bovedas.models.entities.Representante;
 
+@Stateless
 public class RepresentanteControllerEjb implements RepresentanteController {
 
 	@Inject
@@ -18,20 +22,22 @@ public class RepresentanteControllerEjb implements RepresentanteController {
 	}
 
 	@Override
-	public void guardar(Representante entity, Boolean nuevo) {
+	public String guardar(Representante entity, Boolean nuevo) {
 		// TODO Auto-generated method stub
+		
+		String msg = null;
 		if (nuevo) {
-			representanteDao.create(entity);
+			msg = representanteDao.create(entity);
 		} else {
-			representanteDao.update(entity);
+			msg = representanteDao.update(entity);
+		}
+		return msg;
 		}
 
-	}
-
 	@Override
-	public void eliminar(Representante entity) {
+	public String eliminar(Representante entity) {
 		// TODO Auto-generated method stub
-		representanteDao.delete(entity);
+		return representanteDao.delete(entity);
 
 	}
 

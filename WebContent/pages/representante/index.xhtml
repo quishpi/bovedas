@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="#{root}/WEB-INF/template/layout.xhtml">
+
+	<ui:define name="title">Lista de Representantes</ui:define>
+	<ui:define name="content">
+		<h:form>
+			<div class="panel">
+				<div class="panel-body">
+					<div class="btn-group">
+						<p:commandButton onclick="location.href = 'create.xhtml';"
+							icon="fa fa-plus" class="btn" value="Nuevo" />
+					</div>
+				</div>
+			</div>
+			<p:dataTable id="tblLista" var="representante"
+				value="#{representanteIndexBean.representantes}"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+				paginator="true" rows="10" style="margin-bottom:20px">
+
+				<p:column style="width:120px;">
+					<f:facet name="header">
+						<h:outputText value="Cedula" />
+					</f:facet>
+					<h:outputText value="#{representante.cedula}" />
+				</p:column>
+				<p:column style="width:160px;">
+					<f:facet name="header">
+						<h:outputText value="Nombres" />
+					</f:facet>
+					<h:outputText value="#{representante.nombre}" />
+				</p:column>
+				<p:column style="width:160px;">
+					<f:facet name="header">
+						<h:outputText value="Apellidos" />
+					</f:facet>
+					<h:outputText value="#{representante.apelido}" />
+				</p:column>
+				<p:column style="width:120px;">
+					<f:facet name="header">
+						<h:outputText value="Provincia" />
+					</f:facet>
+					<h:outputText
+						value="#{representante.parroquia.canton.provincia.nombre}" />
+				</p:column>
+				<p:column style="width:120px;">
+					<f:facet name="header">
+						<h:outputText value="Canton" />
+					</f:facet>
+					<h:outputText value="#{representante.parroquia.canton.nombre}" />
+				</p:column>
+				<p:column style="width:120px;">
+					<f:facet name="header">
+						<h:outputText value="Parroquia" />
+					</f:facet>
+					<h:outputText value="#{representante.parroquia.nombre}" />
+				</p:column>
+				<p:column style="width:100px;">
+					<f:facet name="header">
+					</f:facet>
+					<div class="btn-group">
+						<p:commandButton onclick="location.href = 'index.xhtml';"
+							icon="fa fa-edit" class="btn" />
+						<p:commandButton onclick="location.href = 'index.xhtml';"
+							icon="fa fa-trash" class="btn" />
+					</div>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+
+		<script>
+	//<![CDATA[
+	
+	//]]>
+	</script>
+
+	</ui:define>
+</ui:composition>
+</html>

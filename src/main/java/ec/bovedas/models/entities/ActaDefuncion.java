@@ -2,10 +2,12 @@ package ec.bovedas.models.entities;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -13,16 +15,19 @@ import javax.persistence.Table;
 
 
 public class ActaDefuncion {
-		
+			
+	
 	public ActaDefuncion() {
 		super();
 	}
 
-	public ActaDefuncion( String archivo) {
+	public ActaDefuncion( String archivo, Fallecido fallecido) {
 		super();
 		this.id = null;
 		this.archivo = archivo;
+		this.fallecido = fallecido;
 	}
+
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "id", unique = true, nullable = false)
@@ -30,6 +35,19 @@ public class ActaDefuncion {
 
 	@Column(name = "archivo", unique = true, nullable = false, length = 500)
 	private String archivo;
+
+	@ManyToOne(cascade = CascadeType.REFRESH, optional = false)
+	private Fallecido fallecido;
+	
+	
+	
+	public Fallecido getFallecido() {
+		return fallecido;
+	}
+
+	public void setFallecido(Fallecido fallecido) {
+		this.fallecido = fallecido;
+	}
 
 	public Integer getId() {
 		return id;
