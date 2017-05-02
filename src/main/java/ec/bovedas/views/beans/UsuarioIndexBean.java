@@ -7,16 +7,12 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import org.apache.log4j.Logger;
-
 import ec.bovedas.controllers.UsuarioController;
 import ec.bovedas.models.entities.Usuario;
 
 @ManagedBean
 @ViewScoped
-public class UsuarioListBean {
-
-	private static final Logger LOGGER = Logger.getLogger(UsuarioCreateBean.class);
+public class UsuarioIndexBean {
 
 	private List<Usuario> usuarios;
 
@@ -25,10 +21,7 @@ public class UsuarioListBean {
 
 	@PostConstruct
 	public void update() {
-		LOGGER.info("Init: process of ListUsuarioBean");
 		usuarios = usuarioController.listarTodo();
-		LOGGER.info("Finish: process of ListUsuarioBean");
-
 	}
 
 	public List<Usuario> getUsuarios() {
@@ -38,5 +31,4 @@ public class UsuarioListBean {
 	public void setUsuarios(List<Usuario> usuarios) {
 		this.usuarios = usuarios;
 	}
-
 }

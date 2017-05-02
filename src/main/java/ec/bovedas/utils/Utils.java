@@ -8,11 +8,9 @@ import javax.faces.context.FacesContext;
 import org.apache.log4j.Logger;
 import org.primefaces.context.RequestContext;
 
-import ec.bovedas.views.beans.UsuarioCreateBean;
-
 public class Utils {
 
-	private static final Logger LOGGER = Logger.getLogger(UsuarioCreateBean.class);
+	private static final Logger LOGGER = Logger.getLogger(Utils.class);
 
 	public static void redirectToPage(String page) {
 		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();

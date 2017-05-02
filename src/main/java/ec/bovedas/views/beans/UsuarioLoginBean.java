@@ -17,7 +17,7 @@ import ec.bovedas.utils.Utils;
 @SessionScoped
 public class UsuarioLoginBean {
 
-	private static final Logger LOGGER = Logger.getLogger(UsuarioCreateBean.class);
+	private static final Logger LOGGER = Logger.getLogger(UsuarioLoginBean.class);
 
 	private Usuario usuario;
 

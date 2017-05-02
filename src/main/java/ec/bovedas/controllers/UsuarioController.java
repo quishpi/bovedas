@@ -6,9 +6,9 @@ import ec.bovedas.models.entities.Usuario;
 
 public interface UsuarioController {
 
-	public void guardar(Usuario entity, Boolean esNuevo);
+	public String guardar(Usuario entity, Boolean esNuevo);
 
-	public void eliminar(Usuario entity);
+	public String eliminar(Usuario entity);
 
 	public Usuario buscar(Integer id);
 

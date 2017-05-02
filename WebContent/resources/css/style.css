@@ -6,3 +6,14 @@
     z-index:9999; 
 }
 /************************************/
+
+/* Theme */
+/* sidebar principal*/
+.skin-blue .wrapper, .skin-blue .main-sidebar, .skin-blue .left-side{
+	/*background-color: #367fa9;*/
+}
+/* submenu */
+.skin-blue .sidebar-menu > li > .treeview-menu{
+	/*background: #369;*/
+}
+

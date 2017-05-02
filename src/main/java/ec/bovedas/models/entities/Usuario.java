@@ -11,9 +11,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import ec.bovedas.utils.UsuarioTipo;
+
 @Entity
 @XmlRootElement
 public class Usuario implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,19 +26,23 @@ public class Usuario implements Serializable {
 	@Column(name = "cedula", unique = true, nullable = false, length = 10)
 	private String cedula;
 
-	@Column(name = "clave", unique = false, nullable = false, length = 250)
+	@Column(name = "clave", nullable = false, length = 250)
 	private String clave;
 
 	@Column(name = "email", unique = true, nullable = false, length = 50)
 	private String email;
 
-	@Column(name = "nombre", unique = false, nullable = false, length = 50)
+	@Column(name = "nombre", nullable = false, length = 50)
 	private String nombre;
 
-	@Column(name = "apellido", unique = false, nullable = false, length = 50)
+	@Column(name = "apellido", nullable = false, length = 50)
 	private String apellido;
 
-	private static final long serialVersionUID = 1L;
+	@Column(name = "telefono", nullable = true, length = 50)
+	private String telefono;
+
+	@Column(name = "usuarioTipo", unique = true, nullable = false)
+	private UsuarioTipo usuarioTipo;
 
 	public Usuario() {
 		super();
@@ -86,6 +94,22 @@ public class Usuario implements Serializable {
 
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
+	}
+
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
+	public UsuarioTipo getUsuarioTipo() {
+		return usuarioTipo;
+	}
+
+	public void setUsuarioTipo(UsuarioTipo usuarioTipo) {
+		this.usuarioTipo = usuarioTipo;
 	}
 
 	@Override
