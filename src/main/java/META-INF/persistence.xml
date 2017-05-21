@@ -22,6 +22,7 @@
 		<class>ec.bovedas.models.entities.FacturaCabecera</class>
 		<class>ec.bovedas.models.entities.FacturaDetalle</class>
 		<class>ec.bovedas.models.entities.Contrato</class>
+		<class>ec.bovedas.models.entities.Empresa</class>
 
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
