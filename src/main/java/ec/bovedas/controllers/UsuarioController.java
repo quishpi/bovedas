@@ -12,7 +12,7 @@ public interface UsuarioController {
 
 	public Usuario buscar(Integer id);
 
-	public Usuario buscar(String cedula, String clave);
+	public Usuario buscar(String cedula);
 
 	public List<Usuario> listarTodo();
 
