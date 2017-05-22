@@ -37,6 +37,9 @@ public class UsuarioLoginBean {
 			if (Encrypt.sonIguales(usuario.getClave(), usuarioTmp.getClave())) {
 				usuario = usuarioTmp;
 				Utils.redirectToPage("/pages/escritorio/index.xhtml");
+			} else {
+				Mensajes.addMsg(FacesMessage.SEVERITY_ERROR, " Error: Usuario o clave incorrecto ");
+				LOGGER.error("Login: Inicio fallido, intento de: " + this.usuario.getCedula());
 			}
 		} else {
 			Mensajes.addMsg(FacesMessage.SEVERITY_ERROR, " Error: Usuario o clave incorrecto ");
