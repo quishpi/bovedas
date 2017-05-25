@@ -7,7 +7,7 @@
 
 <ui:composition template="#{root}/WEB-INF/template/layout.xhtml">
 
-	<ui:define name="title">Lista de Parroquias</ui:define>
+	<ui:define name="title">Lista de precios por periodo</ui:define>
 	<ui:define name="content">
 		<h:form>
 			<div class="panel">
@@ -18,34 +18,58 @@
 					</div>
 				</div>
 			</div>
-			<p:dataTable id="tblLista" var="parroquia"
-				value="#{parroquiaIndexBean.parroquias}"
+			<p:dataTable id="tblLista" var="periodoprecio"
+				value="#{periodoPrecioIndexBean.periodoPrecio}"
 				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
 				paginator="true" rows="10" style="margin-bottom:20px">
-				<p:column style="width:50px;" sortBy="#{parroquia.id}">
+				<p:column style="width:50px;">
 					<f:facet name="header">
 						<h:outputText value="Id" />
 					</f:facet>
-					<h:outputText value="#{parroquia.id}" />
+					<h:outputText value="#{periodoprecio.id}" />
 				</p:column>
-				<p:column sortBy="#{parroquia.nombre}">
+				<p:column style="width:160px;">
 					<f:facet name="header">
 						<h:outputText value="Nombre" />
 					</f:facet>
-					<h:outputText value="#{parroquia.nombre}" />
+					<h:outputText value="#{periodoprecio.nombre}" />
 				</p:column>
-				<p:column sortBy="#{parroquia.nombre}">
+				<p:column style="width:120px;">
 					<f:facet name="header">
-						<h:outputText value="Cantón" />
+						<h:outputText value="Precio" />
 					</f:facet>
-					<h:outputText value="#{parroquia.canton.nombre}" />
+					<h:outputText value="#{periodoprecio.precio}" />
 				</p:column>
-				<p:column sortBy="#{parroquia.canton.provincia.nombre}">
+				<p:column style="width:80px;">
 					<f:facet name="header">
-						<h:outputText value="Provincia" />
+						<h:outputText value="Tipo" />
 					</f:facet>
-					<h:outputText value="#{parroquia.canton.provincia.nombre}" />
+					<h:outputText value="#{periodoprecio.tipoBoveda.tipoBoveda}" />
 				</p:column>
+				<p:column style="width:120px;">
+					<f:facet name="header">
+						<h:outputText value="Fecha Inicio" />
+					</f:facet>
+					<h:outputText value="#{periodoprecio.fechaInicial}">
+						<f:convertDateTime pattern="yyyy-MM-dd" />
+					</h:outputText>
+
+				</p:column>
+				<p:column style="width:120px;">
+					<f:facet name="header">
+						<h:outputText value="Fecha Final" />
+					</f:facet>
+					<h:outputText value="#{periodoprecio.fechaFinal}">
+						<f:convertDateTime pattern="yyyy-MM-dd" />
+					</h:outputText>
+				</p:column>
+				<p:column style="width:120px;">
+					<f:facet name="header">
+						<h:outputText value="Estado" />
+					</f:facet>
+					<h:outputText value="#{periodoprecio.estado}" />
+				</p:column>
+
 				<p:column style="width:100px;">
 					<f:facet name="header">
 					</f:facet>

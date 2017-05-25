@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="#{root}/WEB-INF/template/layout.xhtml">
+	<ui:define name="title">Historial Boveda]</ui:define>
+	<ui:define name="content">
+		<h:form id="frm" class="form-horizontal">
+			<p:growl id="growl" sticky="false" life="5000" showDetail="false"
+				autoUpdate="true" />
+
+			<div class="form-group">
+				<label class="col-sm-1 control-label">Observaciones*</label>
+				<div class="col-sm-4">
+					<p:inputText class="form-control"
+						value="#{historialBovedaCreateBean.historialBoveda.observacion}"
+						required="false" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-1 control-label">Fecha Registro*</label>
+				<div class="col-sm-4">
+					<p:calendar
+						value="#{historialBovedaCreateBean.historialBoveda.fechaRegistro}"
+						locale="de" navigator="true" pattern="yyyy-MM-dd" required="true"
+						requiredMessage="Fecha Registro es obligatorio " />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-1 control-label">Fecha Exhumanación*</label>
+				<div class="col-sm-4">
+					<p:calendar
+						value="#{historialBovedaCreateBean.historialBoveda.fechaExhumacion}"
+						locale="de" navigator="true" pattern="yyyy-MM-dd" required="true"
+						requiredMessage="Fecha Ex Humanación es obligatorio " />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-1 control-label">Fecha Ultimo Pago*</label>
+				<div class="col-sm-4">
+					<p:calendar
+						value="#{historialBovedaCreateBean.historialBoveda.fechaUltimoPago}"
+						locale="de" navigator="true" pattern="yyyy-MM-dd" required="true"
+						requiredMessage="Fecha Ultimo Pago es obligatorio " />
+				</div>
+			</div>
+
+			<div class="col-sm-1"></div>
+			<div class="btn-group">
+				<p:commandButton value="Guardar"
+					actionListener="#{historialBovedaCreateBean.guardar()}"
+					icon="fa fa-save" class="btn" ajax="true" update="frm" />
+				<p:commandButton value="Regresar"
+					onclick="location.href = 'index.xhtml';" icon="fa fa-sign-out"
+					class="btn" />
+			</div>
+			<p:messages id="messages" showDetail="false" autoUpdate="true"
+				closable="true" />
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

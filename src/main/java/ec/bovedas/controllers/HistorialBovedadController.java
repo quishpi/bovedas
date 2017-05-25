@@ -6,9 +6,9 @@ import ec.bovedas.models.entities.HistorialBoveda;
 
 public interface HistorialBovedadController {
 
-	public void guardar(HistorialBoveda entity, Boolean nuevo);
+	public String guardar(HistorialBoveda entity, Boolean nuevo);
 
-	public void eliminar(HistorialBoveda entity);
+	public String eliminar(HistorialBoveda entity);
 
 	public HistorialBoveda buscar(Integer id);
 

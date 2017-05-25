@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="#{root}/WEB-INF/template/layout.xhtml">
+	<ui:define name="title">Factura</ui:define>
+	<ui:define name="content">
+		<h:form id="frm" class="form-horizontal">
+			<p:growl id="growl" sticky="false" life="5000" showDetail="false"
+				autoUpdate="true" />
+			<div class="col-sm-1"></div>
+			<div class="form-group">
+				<p:commandButton value="Representante" class="btn" ajax="true"
+					onclick="PF('dlgLista').show();" immediate="true"
+					update="pnlRepresentante" />
+			</div>
+
+			<p:outputPanel id="pnlRepresentante">
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Cédula</label>
+					<div class="col-sm-4">
+						<p:inputText class="form-control"
+							value="#{fallecidoCreateBean.representanteSelected.cedula}"
+							required="true" readonly="true"
+							requiredMessage="Cédula es obligatorio " />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Nombres</label>
+					<div class="col-sm-4">
+						<p:inputText class="form-control"
+							value="#{fallecidoCreateBean.representanteSelected.nombre.concat(' ').concat(fallecidoCreateBean.representanteSelected.apelido)}"
+							required="true" readonly="true"
+							requiredMessage="Nombres es obligatorio " />
+					</div>
+				</div>
+			</p:outputPanel>
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Fecha Pago*</label>
+				<div class="col-sm-4">
+					<p:calendar
+						value="#{facturaCabeceraCreateBean.facturaCabecera.fechaPago}"
+						locale="de" navigator="true" pattern="yyyy-MM-dd" required="true"
+						requiredMessage="Fecha Fallecimiento de fila es obligatorio " />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Subtotal Iva dif. 0%*</label>
+				<div class="col-sm-4">
+					<p:inputNumber id="subtotalIvaDiferente0"
+						value="#{facturaCabeceraCreateBean.facturaCabecera.subtotalConIva}"
+						required="true"
+						requiredMessage="El Valor IVA diferente de 0% es obligatorio ">
+					</p:inputNumber>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Subtotal Iva 0%*</label>
+				<div class="col-sm-4">
+					<p:inputNumber id="subtotalIva0"
+						value="#{facturaCabeceraCreateBean.facturaCabecera.subtotalIva0}"
+						required="true" requiredMessage="El Valor IVA 0% es obligatorio ">
+					</p:inputNumber>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Iva *</label>
+				<div class="col-sm-4">
+					<p:inputNumber id="valorIva"
+						value="#{facturaCabeceraCreateBean.facturaCabecera.valorIva}"
+						required="true" requiredMessage="El Valor IVA  es obligatorio ">
+					</p:inputNumber>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Exoneración *</label>
+				<div class="col-sm-4">
+					<p:inputNumber id="valorExoneracion"
+						value="#{facturaCabeceraCreateBean.facturaCabecera.valorExoneracion}"
+						required="true"
+						requiredMessage="El Valor Exoneración  es obligatorio ">
+					</p:inputNumber>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Total *</label>
+				<div class="col-sm-4">
+					<p:inputNumber id="total"
+						value="#{facturaCabeceraCreateBean.facturaCabecera.total}"
+						required="true" requiredMessage="El Valor Total  es obligatorio ">
+					</p:inputNumber>
+				</div>
+			</div>
+
+
+			<div class="col-sm-1"></div>
+			<div class="btn-group">
+				<p:commandButton value="Guardar"
+					actionListener="#{ facturaCabeceraCreateBean.guardar()}"
+					icon="fa fa-save" class="btn" ajax="true" update="frm" />
+				<p:commandButton value="Regresar"
+					onclick="location.href = 'index.xhtml';" icon="fa fa-sign-out"
+					class="btn" />
+			</div>
+			<p:messages id="messages" showDetail="false" autoUpdate="true"
+				closable="true" />
+
+			<p:dialog id="dlgRepresentante" header="Lista de Representantes"
+				widgetVar="dlgLista" modal="true" height="500" width="800"
+				resizable="false">
+				<p:outputPanel id="pnlDialog">
+					<div class="panel">
+						<div class="panel-body">
+							<div class="form-group">
+								<p:commandButton value="Nuevo" class="btn" />
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Criterio</label>
+						<div class="col-sm-5">
+							<p:inputText class="form-control"
+								value="#{fallecidoCreateBean.criterio}" />
+						</div>
+						<p:commandButton value="Buscar" class="btn" ajax="true"
+							immediate="true"
+							actionListener="#{fallecidoCreateBean.buscarRepresentante()}"
+							update="pnlDialog tblLista" />
+
+					</div>
+					<p:dataTable id="tblLista" var="representante"
+						value="#{representanteIndexBean.representantes}"
+						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+						paginator="true" rows="10" style="margin-bottom:20px"
+						resizable="false">
+						<p:column style="width:120px;">
+							<f:facet name="header">
+								<h:outputText value="Cedula" />
+							</f:facet>
+							<h:outputText value="#{representante.cedula}" />
+						</p:column>
+						<p:column style="width:160px;">
+							<f:facet name="header">
+								<h:outputText value="Nombres" />
+							</f:facet>
+							<h:outputText
+								value="#{representante.nombre.concat(' ').concat(representante.apelido)}" />
+						</p:column>
+
+						<p:column style="width:120px;">
+							<f:facet name="header">
+								<h:outputText value="Provincia" />
+							</f:facet>
+							<h:outputText
+								value="#{representante.parroquia.canton.provincia.nombre}" />
+						</p:column>
+						<p:column style="width:120px;">
+							<f:facet name="header">
+								<h:outputText value="Canton" />
+							</f:facet>
+							<h:outputText value="#{representante.parroquia.canton.nombre}" />
+						</p:column>
+						<p:column style="width:120px;">
+							<f:facet name="header">
+								<h:outputText value="Parroquia" />
+							</f:facet>
+							<h:outputText value="#{representante.parroquia.nombre}" />
+						</p:column>
+						<p:column style="width:100px;">
+							<f:facet name="header">
+							</f:facet>
+							<div class="btn-group">
+								<p:commandButton update=":frm:pnlRepresentante"
+									icon="ui-icon-search" title="View" immediate="true"
+									onclick="PF('dlgLista').hidden();">
+									<f:setPropertyActionListener value="#{representante}"
+										target="#{fallecidoCreateBean.representanteSelected}" />
+								</p:commandButton>
+
+							</div>
+						</p:column>
+					</p:dataTable>
+				</p:outputPanel>
+			</p:dialog>
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

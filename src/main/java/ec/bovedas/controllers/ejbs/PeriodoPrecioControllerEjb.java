@@ -20,21 +20,22 @@ public class PeriodoPrecioControllerEjb implements PeriodoPrecioController {
 	}
 
 	@Override
-	public void guardar(PeriodoPrecio entity, Boolean nuevo) {
+	public String guardar(PeriodoPrecio entity, Boolean nuevo) {
 		// TODO Auto-generated method stub
-
+		String msg = null;
 		if (nuevo) {
-			periodoPrecioDao.create(entity);
+			msg= periodoPrecioDao.create(entity);
 		} else {
-			periodoPrecioDao.update(entity);
+			msg=periodoPrecioDao.update(entity);
 		}
+		return msg;
 
 	}
 
 	@Override
-	public void eliminar(PeriodoPrecio entity) {
+	public String eliminar(PeriodoPrecio entity) {
 		// TODO Auto-generated method stub
-		periodoPrecioDao.delete(entity);
+		return periodoPrecioDao.delete(entity);
 
 	}
 

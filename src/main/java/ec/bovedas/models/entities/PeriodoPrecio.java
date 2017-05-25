@@ -9,7 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
+import ec.bovedas.utils.EstadoPrecio;
 import ec.bovedas.utils.TipoBoveda;
 
 @Entity
@@ -22,7 +22,7 @@ public class PeriodoPrecio {
 	}
 
 	public PeriodoPrecio(String nombre, Date fechaInicial, Date fechaFinal, TipoBoveda tipoBoveda, Double precio,
-			Boolean estado, Double porcentajeIva) {
+			EstadoPrecio estadoPrecio, Double porcentajeIva) {
 		super();
 		this.id = null;
 		this.nombre = nombre;
@@ -30,7 +30,7 @@ public class PeriodoPrecio {
 		this.fechaFinal = fechaFinal;
 		this.tipoBoveda = tipoBoveda;
 		this.precio = precio;
-		this.estado = estado;
+		this.estadoPrecio = estadoPrecio;
 		this.porcentajeIva = porcentajeIva;
 	}
 
@@ -54,7 +54,7 @@ public class PeriodoPrecio {
 	private Double precio = 0.0;
 
 	@Column(name = "estado", nullable = false)
-	private Boolean estado = false;
+	private EstadoPrecio estadoPrecio;
 
 	@Column(name = "porcentajeIva", nullable = false)
 	private Double porcentajeIva = 0.0;
@@ -107,12 +107,12 @@ public class PeriodoPrecio {
 		this.precio = precio;
 	}
 
-	public Boolean getEstado() {
-		return estado;
+	public EstadoPrecio getEstado() {
+		return estadoPrecio;
 	}
 
-	public void setEstado(Boolean estado) {
-		this.estado = estado;
+	public void setEstado(EstadoPrecio estado) {
+		this.estadoPrecio = estado;
 	}
 
 	public Double getPorcentajeIva() {
@@ -126,7 +126,7 @@ public class PeriodoPrecio {
 	@Override
 	public String toString() {
 		return "PeriodoPrecio [id=" + id + ", nombre=" + nombre + ", fechaInicial=" + fechaInicial + ", fechaFinal="
-				+ fechaFinal + ", tipoBoveda=" + tipoBoveda + ", precio=" + precio + ", estado=" + estado
+				+ fechaFinal + ", tipoBoveda=" + tipoBoveda + ", precio=" + precio + ", estado=" + estadoPrecio
 				+ ", porcentajeIva=" + porcentajeIva + "]";
 	}
 

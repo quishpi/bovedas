@@ -6,9 +6,9 @@ import ec.bovedas.models.entities.PeriodoPrecio;
 
 public interface PeriodoPrecioController {
 
-	public void guardar(PeriodoPrecio entity, Boolean nuevo);
+	public String guardar(PeriodoPrecio entity, Boolean nuevo);
 
-	public void eliminar(PeriodoPrecio entity);
+	public String eliminar(PeriodoPrecio entity);
 
 	public PeriodoPrecio buscar(Integer id);
 

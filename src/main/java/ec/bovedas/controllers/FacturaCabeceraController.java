@@ -6,9 +6,9 @@ import ec.bovedas.models.entities.FacturaCabecera;
 
 public interface FacturaCabeceraController {
 
-	public void guardar(FacturaCabecera entity, Boolean nuevo);
+	public String guardar(FacturaCabecera entity, Boolean nuevo);
 
-	public void eliminar(FacturaCabecera entity);
+	public String eliminar(FacturaCabecera entity);
 
 	public FacturaCabecera buscar(Integer id);
 

@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="#{root}/WEB-INF/template/layout.xhtml">
+	<ui:define name="title">Precios por Periodo</ui:define>
+	<ui:define name="content">
+		<h:form id="frm" class="form-horizontal">
+			<p:growl id="growl" sticky="false" life="5000" showDetail="false"
+				autoUpdate="true" />
+
+			<div class="form-group">
+				<label class="col-sm-1 control-label">Nombre*</label>
+				<div class="col-sm-4">
+					<p:inputText class="form-control"
+						value="#{periodoPrecioCreateBean.periodoPrecio.nombre}"
+						required="true" requiredMessage="Nombre es obligatorio " />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-1 control-label">Fecha Inicio*</label>
+				<div class="col-sm-4">
+					<p:calendar
+						value="#{periodoPrecioCreateBean.periodoPrecio.fechaInicial}"
+						locale="de" navigator="true" pattern="yyyy-MM-dd" required="true"
+						requiredMessage="Fecha Fallecimiento de fila es obligatorio " />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-1 control-label">Fecha Fin*</label>
+				<div class="col-sm-4">
+					<p:calendar
+						value="#{periodoPrecioCreateBean.periodoPrecio.fechaFinal}"
+						locale="de" navigator="true" pattern="yyyy-MM-dd" required="true"
+						requiredMessage="Fecha Fallecimiento de fila es obligatorio " />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-1 control-label">Tipo Bóveda*</label>
+				<div class="col-sm-4">
+					<p:selectOneMenu id="tipoBoveda" required="true"
+						requiredMessage="Tipo Bóveda es obligatorio "
+						value="#{periodoPrecioCreateBean.periodoPrecio.tipoBoveda}"
+						converter="omnifaces.SelectItemsConverter" style="width:100%;">
+						<f:selectItem itemLabel="Seleccione" itemValue=""
+							noSelectionOption="true" />
+						<f:selectItems value="#{periodoPrecioCreateBean.tipoBovedas}"
+							var="tipoBoveda" itemLabel="#{tipoBoveda.tipoBoveda}"
+							itemValue="#{tipoBoveda}" />
+					</p:selectOneMenu>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-1 control-label">Precio*</label>
+				<div class="col-sm-4">
+					<p:inputNumber id="precio"
+						value="#{periodoPrecioCreateBean.periodoPrecio.precio}"
+						required="true"
+						requiredMessage="Número de columna es obligatorio ">
+					</p:inputNumber>
+
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-1 control-label">Estado*</label>
+				<div class="col-sm-4">
+					<p:selectOneMenu id="estado" required="true"
+						requiredMessage="Estado es obligatorio "
+						value="#{periodoPrecioCreateBean.periodoPrecio.estado}"
+						converter="omnifaces.SelectItemsConverter" style="width:100%;">
+						<f:selectItem itemLabel="Seleccione" itemValue=""
+							noSelectionOption="true" />
+						<f:selectItems value="#{periodoPrecioCreateBean.estados}" var="estado"
+							itemLabel="#{estado.estadoPrecio}" itemValue="#{estado}" />
+					</p:selectOneMenu>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-1 control-label">Porcentaje IVA*</label>
+				<div class="col-sm-5">
+					<p:spinner
+						value="#{periodoPrecioCreateBean.periodoPrecio.porcentajeIva}"
+						stepFactor="0.25" required="true"
+						requiredMessage="Porcentaje de IVA es obligatorio " />
+				</div>
+			</div>
+
+			<div class="col-sm-1"></div>
+			<div class="btn-group">
+				<p:commandButton value="Guardar"
+					actionListener="#{periodoPrecioCreateBean.guardar()}" icon="fa fa-save"
+					class="btn" ajax="true" update="frm" />
+				<p:commandButton value="Regresar"
+					onclick="location.href = 'index.xhtml';" icon="fa fa-sign-out"
+					class="btn" />
+			</div>
+			<p:messages id="messages" showDetail="false" autoUpdate="true"
+				closable="true" />
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

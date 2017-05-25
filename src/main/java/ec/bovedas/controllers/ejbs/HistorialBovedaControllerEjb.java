@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-
 import ec.bovedas.controllers.HistorialBovedadController;
 import ec.bovedas.models.daos.HistorialBovedaDao;
 import ec.bovedas.models.entities.HistorialBoveda;
@@ -20,20 +19,23 @@ public class HistorialBovedaControllerEjb implements HistorialBovedadController 
 	}
 
 	@Override
-	public void guardar(HistorialBoveda entity, Boolean nuevo) {
+	public String guardar(HistorialBoveda entity, Boolean nuevo) {
 		// TODO Auto-generated method stub
+
+		String msg = null;
 		if (nuevo) {
-			historialBovedaDao.create(entity);
+			msg = historialBovedaDao.create(entity);
 		} else {
-			historialBovedaDao.update(entity);
+			msg = historialBovedaDao.update(entity);
 		}
+		return msg;
 
 	}
 
 	@Override
-	public void eliminar(HistorialBoveda entity) {
+	public String eliminar(HistorialBoveda entity) {
 		// TODO Auto-generated method stub
-		historialBovedaDao.delete(entity);
+		return historialBovedaDao.delete(entity);
 
 	}
 

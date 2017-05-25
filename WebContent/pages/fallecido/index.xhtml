@@ -44,9 +44,28 @@
 					<f:facet name="header">
 						<h:outputText value="Fecha Fallecimiento" />
 					</f:facet>
-					<h:outputText value="#{fallecido.fechafallecimiento}" />
+					<h:outputText value="#{fallecido.fechafallecimiento}">
+						<f:convertDateTime pattern="yyyy-MM-dd" />
+					</h:outputText>
 				</p:column>
-				
+				<p:column style="width:100px;">
+					<f:facet name="header">
+						<h:outputText value="Fecha Inscripción" />
+					</f:facet>
+					<h:outputText value="#{fallecido.fechainscripciondefuncion}" >
+					<f:convertDateTime pattern="yyyy-MM-dd" />
+					</h:outputText>
+				</p:column>
+				<p:column style="width:100px;">
+					<f:facet name="header">
+						<h:outputText value="Fecha Cementerio" />
+					</f:facet>
+					<h:outputText value="#{fallecido.fechaingresocementerio}">
+					<f:convertDateTime pattern="yyyy-MM-dd" />
+					</h:outputText>
+				</p:column>
+
+
 				<p:column style="width:100px;">
 					<f:facet name="header">
 					</f:facet>

@@ -9,7 +9,6 @@ import org.apache.log4j.Logger;
 
 import ec.bovedas.controllers.MausoleoController;
 import ec.bovedas.models.entities.Mausoleo;
-import ec.bovedas.models.entities.Nacionalidad;
 import ec.bovedas.utils.EstadoFisico;
 import ec.bovedas.utils.Mensajes;
 

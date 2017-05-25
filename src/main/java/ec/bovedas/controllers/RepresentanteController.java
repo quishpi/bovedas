@@ -17,5 +17,7 @@ public interface RepresentanteController {
 	public List<Representante> listarTodo();
 
 	public Integer contar();
+	
+	public List<Representante> listarRepresentante(String criterio);
 
 }

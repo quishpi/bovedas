@@ -10,9 +10,7 @@ import javax.faces.bean.ViewScoped;
 import org.apache.log4j.Logger;
 
 import ec.bovedas.controllers.MausoleoController;
-import ec.bovedas.controllers.ProvinciaController;
 import ec.bovedas.models.entities.Mausoleo;
-import ec.bovedas.models.entities.Provincia;
 
 @ManagedBean
 @ViewScoped

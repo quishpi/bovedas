@@ -20,21 +20,22 @@ public class FacturaDetalleControllerEjb implements FacturaDetalleController {
 	}
 
 	@Override
-	public void guardar(FacturaDetalle entity, Boolean nuevo) {
+	public String guardar(FacturaDetalle entity, Boolean nuevo) {
 		// TODO Auto-generated method stub
 
+		String msg = null;
 		if (nuevo) {
-			facturaDetalleDao.create(entity);
+			msg = facturaDetalleDao.create(entity);
 		} else {
-			facturaDetalleDao.update(entity);
+			msg = facturaDetalleDao.update(entity);
 		}
+		return msg;
 
 	}
-
 	@Override
-	public void eliminar(FacturaDetalle entity) {
+	public String eliminar(FacturaDetalle entity) {
 		// TODO Auto-generated method stub
-		facturaDetalleDao.delete(entity);
+		return facturaDetalleDao.delete(entity);
 	}
 
 	@Override

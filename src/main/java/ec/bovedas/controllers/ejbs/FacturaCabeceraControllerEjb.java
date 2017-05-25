@@ -20,20 +20,25 @@ public class FacturaCabeceraControllerEjb implements FacturaCabeceraController {
 	}
 
 	@Override
-	public void guardar(FacturaCabecera entity, Boolean nuevo) {
+	public String guardar(FacturaCabecera entity, Boolean nuevo) {
 		// TODO Auto-generated method stub
+
+		String msg = null;
 		if (nuevo) {
-			facturaCabeceraDao.create(entity);
+			msg = facturaCabeceraDao.create(entity);
 		} else {
-			facturaCabeceraDao.update(entity);
+			msg = facturaCabeceraDao.update(entity);
 		}
+		return msg;
 
 	}
 
 	@Override
-	public void eliminar(FacturaCabecera entity) {
+	public String eliminar(FacturaCabecera entity) {
 		// TODO Auto-generated method stub
+		String msg = null;
 		facturaCabeceraDao.delete(entity);
+		return msg;
 
 	}
 

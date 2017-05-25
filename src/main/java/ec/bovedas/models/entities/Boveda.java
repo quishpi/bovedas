@@ -42,7 +42,7 @@ public class Boveda {
 	@Column(name = "id", unique = true, nullable = false)
 	private Integer id;
 	
-	@Column(name = "numero", unique = false, nullable = false)
+	@Column(name = "numero", unique = true, nullable = false)
 	private Integer numero;
 	
 	@ManyToOne(cascade = CascadeType.REFRESH, optional = false)
