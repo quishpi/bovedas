@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="#{root}/WEB-INF/template/layout.xhtml">
+	<ui:define name="title">Institución - Actualización</ui:define>
+	<ui:define name="content">
+		<h:form id="frm" class="form-horizontal">
+			<p:growl id="growl" sticky="false" life="5000" showDetail="false"
+				autoUpdate="true" />
+
+			<div class="form-group">
+				<label class="col-md-2 control-label">RUC*</label>
+				<div class="col-md-4">
+					<p:inputMask class="form-control" maxlength="13"
+						value="#{empresaUpdateBean.empresa.ruc}" required="true"
+						requiredMessage="RUC es obligatorio "
+						validatorMessage="RUC debe tener 13 caracteres"
+						mask="9999999999999">
+						<f:validateLength minimum="13" />
+					</p:inputMask>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label">Nombre de la Empresa*</label>
+				<div class="col-md-4">
+					<p:inputText class="form-control input-md"
+						value="#{empresaUpdateBean.empresa.nombre}" required="true"
+						requiredMessage="Nombre de la empresa es obligatorio " />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label">Dirección*</label>
+				<div class="col-md-4">
+					<p:inputText class="form-control"
+						value="#{empresaUpdateBean.empresa.direccion}" required="true"
+						requiredMessage="Dirección es obligatorio " />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label">Teléfono*</label>
+				<div class="col-md-4">
+					<p:inputText class="form-control"
+						value="#{empresaUpdateBean.empresa.telefono}" required="true"
+						requiredMessage="Teléfono es obligatorio " />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label">Email*</label>
+				<div class="col-md-4">
+					<p:inputText class="form-control"
+						value="#{empresaUpdateBean.empresa.email}" required="true"
+						requiredMessage="Email es obligatorio "
+						validatorMessage="Formato de Email incorrecto">
+						<f:validateRegex
+							pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+					</p:inputText>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label">Sitio Web*</label>
+				<div class="col-md-4">
+					<p:inputText class="form-control"
+						value="#{empresaUpdateBean.empresa.url}" required="true"
+						requiredMessage="Sitio Web es obligatorio " />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label">Provincia*</label>
+				<div class="col-md-4">
+					<p:selectOneMenu id="provincia" required="true"
+						requiredMessage="Provincia es obligatorio "
+						value="#{empresaUpdateBean.provincia}"
+						converter="omnifaces.SelectItemsConverter" style="width:100%;">
+						<p:ajax listener="#{empresaUpdateBean.onProvinciaChange()}"
+							update="canton" onstart="PF('statusDialog').show()"
+							onsuccess="PF('statusDialog').hide()" />
+						<f:selectItem itemLabel="Seleccione" itemValue=""
+							noSelectionOption="true" />
+						<f:selectItems value="#{empresaUpdateBean.provincias}"
+							var="provincia" itemLabel="#{provincia.nombre}"
+							itemValue="#{provincia}" />
+					</p:selectOneMenu>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label">Cantón*</label>
+				<div class="col-md-4">
+					<p:selectOneMenu id="canton" required="true"
+						requiredMessage="Cantón es obligatorio "
+						value="#{empresaUpdateBean.canton}"
+						converter="omnifaces.SelectItemsConverter" style="width:100%;">
+						<p:ajax listener="#{empresaUpdateBean.onCantonChange()}"
+							update="parroquia" onstart="PF('statusDialog').show()"
+							onsuccess="PF('statusDialog').hide()" />
+						<f:selectItem itemLabel="Seleccione" itemValue=""
+							noSelectionOption="true" />
+						<f:selectItems value="#{empresaUpdateBean.cantones}"
+							var="canton" itemLabel="#{canton.nombre}"
+							itemValue="#{canton}" />
+					</p:selectOneMenu>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label">Parroquia*</label>
+				<div class="col-md-4">
+					<p:selectOneMenu id="parroquia" required="true"
+						requiredMessage="Parroquia es obligatorio "
+						value="#{empresaUpdateBean.parroquia}"
+						converter="omnifaces.SelectItemsConverter" style="width:100%;">
+						<f:selectItem itemLabel="Seleccione" itemValue=""
+							noSelectionOption="true" />
+						<f:selectItems value="#{empresaUpdateBean.parroquias}"
+							var="parroquia" itemLabel="#{parroquia.nombre}"
+							itemValue="#{parroquia}" />
+					</p:selectOneMenu>
+				</div>
+			</div>
+			<div class="col-md-2"></div>
+			<div class="btn-group">
+				<p:commandButton value="Guardar"
+					actionListener="#{empresaUpdateBean.actualizar()}"
+					icon="fa fa-save" class="btn" ajax="true" update="frm"
+					onstart="PF('statusDialog').show()"
+					onsuccess="PF('statusDialog').hide()" />
+				<p:commandButton value="Regresar"
+					onclick="location.href = 'index.xhtml';" icon="fa fa-sign-out"
+					class="btn" immediate="true" />
+			</div>
+			<p:messages id="messages" showDetail="false" autoUpdate="true"
+				closable="true" />
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

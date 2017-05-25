@@ -8,6 +8,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import org.apache.log4j.Logger;
+import org.primefaces.context.RequestContext;
 
 import ec.bovedas.controllers.FallecidoController;
 import ec.bovedas.controllers.RepresentanteController;
@@ -24,20 +25,23 @@ public class FallecidoCreateBean {
 	private static final Logger LOGGER = Logger.getLogger(FallecidoCreateBean.class);
 
 	private Fallecido fallecido;
-	private Representante representanteSelected;
 	private String criterio;
+	private Representante representante;
+	private Representante representanteSelected;
+	private List<Representante> representantes;
 
 	@EJB
 	private FallecidoController fallecidoController;
-	private List<Representante> representantes;
 	@EJB
 	private RepresentanteController representanteController;
+
 	@PostConstruct
 	public void init() {
 		fallecido = new Fallecido();
-		representanteSelected=new Representante();
+		representante = new Representante();
+		representanteSelected = new Representante();
 		setRepresentantes(representanteController.listarTodo());
-		this.criterio="cel";
+		this.criterio = "cel";
 
 	}
 
@@ -53,6 +57,21 @@ public class FallecidoCreateBean {
 		}
 	}
 
+	public void guardarRepresentante() {
+		String result = representanteController.guardar(representante, true);
+		if (result == null) {
+			representante = new Representante();
+			setRepresentantes(representanteController.listarTodo());
+			Mensajes.addMsg(FacesMessage.SEVERITY_INFO, "Guardado correctamente");
+			RequestContext context = RequestContext.getCurrentInstance();
+			RequestContext.getCurrentInstance().update("fmrRepresentanteLista:pnlLista");
+			context.execute("PF('dlgCrear').hide();");
+
+		} else {
+			Mensajes.addMsg(FacesMessage.SEVERITY_ERROR, "Error: " + result);
+		}
+	}
+
 	public Genero[] getGeneros() {
 		return Genero.values();
 	}
@@ -60,10 +79,11 @@ public class FallecidoCreateBean {
 	public EstadoCivil[] getEstadoCiviles() {
 		return EstadoCivil.values();
 	}
-	public void buscarRepresentante(){
-		System.out.println("--> criterio:"+criterio);
-		representantes=representanteController.listarRepresentante(criterio);
-		System.out.println("--> in lista:"+representantes.size());
+
+	public void buscarRepresentante() {
+		System.out.println("--> criterio:" + criterio);
+		representantes = representanteController.listarRepresentante(criterio);
+		System.out.println("--> in lista:" + representantes.size());
 	}
 
 	public void actualizar() {
@@ -110,6 +130,12 @@ public class FallecidoCreateBean {
 		this.criterio = criterio;
 	}
 
-	
+	public Representante getRepresentante() {
+		return representante;
+	}
+
+	public void setRepresentante(Representante representante) {
+		this.representante = representante;
+	}
 
 }

@@ -129,8 +129,8 @@
 			<div class="col-sm-2"></div>
 			<div class="form-group">
 				<p:commandButton value="Representante" class="btn" ajax="true"
-					onclick="PF('dlgLista').show();" immediate="true"
-					update="pnlRepresentante" />
+					onclick="PF('dlgLista').show();" immediate="true" />
+				<!-- update="pnlRepresentante"  -->
 			</div>
 			<p:outputPanel id="pnlRepresentante">
 				<div class="form-group">
@@ -152,7 +152,7 @@
 					</div>
 				</div>
 			</p:outputPanel>
-			<div class="col-sm-1"></div>
+			<div class="col-sm-2"></div>
 			<div class="btn-group">
 				<p:commandButton value="Guardar"
 					actionListener="#{fallecidoCreateBean.guardar()}" icon="fa fa-save"
@@ -163,17 +163,18 @@
 			</div>
 			<p:messages id="messages" showDetail="false" autoUpdate="true"
 				closable="true" />
-
-			<p:dialog id="dlgRepresentante" header="Lista de Representantes"
-				widgetVar="dlgLista" modal="true" height="500" width="800"
-				resizable="false">
-				<p:outputPanel id="pnlDialog">
+		</h:form>
+		<p:dialog id="dlgRepresentante" header="Lista de Representantes"
+			widgetVar="dlgLista" modal="true" height="500" width="800"
+			resizable="false">
+			<h:form id="fmrRepresentanteLista" class="form-horizontal">
+				<p:outputPanel id="pnlLista">
 					<div class="panel">
 						<div class="panel-body">
 							<div class="form-group">
 								<p:commandButton value="Nuevo" class="btn" ajax="true"
-									onclick="('dlgCrear').show();" immediate="true"
-									update="dlgCrearRepresentante" />
+									onclick="PF('dlgCrear').show();" immediate="true"
+									update=":fmrRepresentanteCrear:pnlRepCrear" />
 							</div>
 						</div>
 					</div>
@@ -186,7 +187,7 @@
 						<p:commandButton value="Buscar" class="btn" ajax="true"
 							immediate="true"
 							actionListener="#{fallecidoCreateBean.buscarRepresentante()}"
-							update="pnlDialog tblLista" />
+							update="pnlLista tblLista" />
 
 					</div>
 					<p:dataTable id="tblLista" var="representante"
@@ -242,37 +243,39 @@
 						</p:column>
 					</p:dataTable>
 				</p:outputPanel>
-			</p:dialog>
-			<p:dialog id="dlgCrearRepresentante" header="Ingresar Representantes"
-				widgetVar="dlgCrear" modal="true" height="500" width="800"
-				resizable="false">
-				<p:outputPanel id="pnlDialog1">
+			</h:form>
+		</p:dialog>
+		<p:dialog id="dlgCrearRepresentante" header="Ingresar Representantes"
+			widgetVar="dlgCrear" modal="true" height="500" width="700"
+			resizable="false">
+			<h:form id="fmrRepresentanteCrear" class="form-horizontal">
+				<p:outputPanel id="pnlRepCrear">
 					<div class="form-group">
-						<label class="col-sm-1 control-label">Cedula*</label>
+						<label class="col-sm-2 control-label">Cedula*</label>
 						<div class="col-sm-4">
 							<p:inputText class="form-control"
-								value="#{representanteCreateBean.representante.cedula}"
+								value="#{fallecidoCreateBean.representante.cedula}"
 								required="true" requiredMessage="Nombre es obligatorio " />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-1 control-label">Nombres*</label>
+						<label class="col-sm-2 control-label">Nombres*</label>
 						<div class="col-sm-4">
 							<p:inputText class="form-control"
-								value="#{representanteCreateBean.representante.nombre}"
+								value="#{fallecidoCreateBean.representante.nombre}"
 								required="true" requiredMessage="Nombre es obligatorio " />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-1 control-label">Apellidos*</label>
+						<label class="col-sm-2 control-label">Apellidos*</label>
 						<div class="col-sm-4">
 							<p:inputText class="form-control"
-								value="#{representanteCreateBean.representante.apelido}"
+								value="#{fallecidoCreateBean.representante.apelido}"
 								required="true" requiredMessage="Código es obligatorio " />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-1 control-label">Provincia*</label>
+						<label class="col-sm-2 control-label">Provincia*</label>
 						<div class="col-sm-3">
 							<p:selectOneMenu id="provincia" required="true"
 								requiredMessage="Provincia es obligatorio "
@@ -280,7 +283,8 @@
 								converter="omnifaces.SelectItemsConverter" style="width:100%;">
 								<p:ajax
 									listener="#{representanteCreateBean.onProvinciaChange()}"
-									update="canton" />
+									update="canton" onstart="PF('statusDialog').show()"
+									onsuccess="PF('statusDialog').hide()" />
 								<f:selectItem itemLabel="Seleccione" itemValue=""
 									noSelectionOption="true" />
 								<f:selectItems value="#{representanteCreateBean.provincias}"
@@ -290,14 +294,15 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-1 control-label">Cantón*</label>
+						<label class="col-sm-2 control-label">Cantón*</label>
 						<div class="col-sm-3">
 							<p:selectOneMenu id="canton" required="true"
 								requiredMessage="Canton es obligatorio "
 								value="#{representanteCreateBean.canton}"
 								converter="omnifaces.SelectItemsConverter" style="width:100%;">
 								<p:ajax listener="#{representanteCreateBean.onCantonChange()}"
-									update="parroquia" />
+									update="parroquia" onstart="PF('statusDialog').show()"
+									onsuccess="PF('statusDialog').hide()" />
 								<f:selectItem itemLabel="Seleccione" itemValue=""
 									noSelectionOption="true" />
 								<f:selectItems value="#{representanteCreateBean.cantones }"
@@ -307,11 +312,11 @@
 					</div>
 
 					<div class="form-group">
-						<label class="col-sm-1 control-label">Parroquia*</label>
+						<label class="col-sm-2 control-label">Parroquia*</label>
 						<div class="col-sm-3">
 							<p:selectOneMenu id="parroquia" required="true"
 								requiredMessage="Parroquia es obligatorio "
-								value="#{representanteCreateBean.representante.parroquia}"
+								value="#{fallecidoCreateBean.representante.parroquia}"
 								converter="omnifaces.SelectItemsConverter" style="width:100%;">
 								<f:selectItem itemLabel="Seleccione" itemValue=""
 									noSelectionOption="true" />
@@ -323,10 +328,10 @@
 					</div>
 
 					<div class="form-group">
-						<label class="col-sm-1 control-label">Exoneracion*</label>
+						<label class="col-sm-2 control-label">Exoneracion*</label>
 						<div class="col-sm-5">
 							<p:spinner
-								value="#{representanteCreateBean.representante.porcentajeExoneracion}"
+								value="#{fallecidoCreateBean.representante.porcentajeExoneracion}"
 								stepFactor="0.25" required="true"
 								requiredMessage="Número de bóvedas es obligatorio " />
 						</div>
@@ -334,45 +339,49 @@
 
 
 					<div class="form-group">
-						<label class="col-sm-1 control-label">Direccion*</label>
+						<label class="col-sm-2 control-label">Direccion*</label>
 						<div class="col-sm-4">
 							<p:inputText class="form-control"
-								value="#{representanteCreateBean.representante.direccion}"
+								value="#{fallecidoCreateBean.representante.direccion}"
 								required="true" requiredMessage="Direccion es obligatorio " />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-1 control-label">Telefono*</label>
+						<label class="col-sm-2 control-label">Telefono*</label>
 						<div class="col-sm-4">
 							<p:inputText class="form-control"
-								value="#{representanteCreateBean.representante.telefono}"
+								value="#{fallecidoCreateBean.representante.telefono}"
 								required="true" requiredMessage="Telefono es obligatorio " />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-1 control-label">Observaciones*</label>
+						<label class="col-sm-2 control-label">Observaciones</label>
 						<div class="col-sm-6">
 							<p:inputText class="form-control"
-								value="#{representanteCreateBean.representante.observacion}" />
+								value="#{fallecidoCreateBean.representante.observacion}" />
 						</div>
 					</div>
 
-					<div class="col-sm-1"></div>
+					<div class="col-sm-2"></div>
 					<div class="btn-group">
-						<p:commandButton value="Guardar"
-							actionListener="#{representanteCreateBean.guardar()}"
-							icon="fa fa-save" class="btn" ajax="true" update="frm" />
-						<p:commandButton value="Regresar"
-							onclick="location.href = 'index.xhtml';" icon="fa fa-sign-out"
-							class="btn" />
+						<p:commandLink value="Guardar"
+							
+							class="btn btn-primary">
+							<p:ajax listener="#{fallecidoCreateBean.guardarRepresentante()}"
+								update=":fmrRepresentanteLista:pnlLista" onstart="PF('statusDialog').show()"
+								onsuccess="PF('statusDialog').hide()" />
+						</p:commandLink>
+						<p:commandLink value="Cancelar" onclick="PF('dlgCrear').hide();"
+							class="btn btn-primary" immediate="true" />
 					</div>
-					<p:messages id="messagesr" showDetail="false" autoUpdate="true"
+					<p:messages id="messages" showDetail="false" autoUpdate="true"
 						closable="true" />
 
 				</p:outputPanel>
-			</p:dialog>
+			</h:form>
+		</p:dialog>
 
-		</h:form>
+
 	</ui:define>
 </ui:composition>
 </html>
