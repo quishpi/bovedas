@@ -41,8 +41,8 @@ public class UsuarioControllerEjb implements UsuarioController {
 	}
 
 	@Override
-	public Usuario buscar(String cedula, String clave) {
-		return usuarioDao.findUsuario(cedula, clave);
+	public Usuario buscar(String cedula) {
+		return usuarioDao.findUsuario(cedula);
 	}
 
 	@Override
